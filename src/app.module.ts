@@ -7,8 +7,9 @@ import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
 import connectionDB from './database.config';
 
 @Module({
-  imports: [CoreModule, AuthModule, TypeOrmModule.forRoot(connectionDB)],
+  imports: [TypeOrmModule.forRoot(connectionDB),
+    CoreModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

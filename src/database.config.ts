@@ -6,7 +6,7 @@ const connectionDB: TypeOrmModuleOptions = {
   username: 'postgres',
   password: '12345',
   database: 'pointsale',
-  entities: [__dirname + '/entity/*{.js,.ts}'],
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: true,
 };
 

@@ -34,13 +34,14 @@ export class OrderEntity {
 
   @Column({
     name: 'payment_method',
-    type: 'string',
+    type: 'varchar',
   })
   paymentMethod: string;
 
   @Column({
     name: 'total',
-    type: 'number',
+    type: 'numeric',
+    scale:2
   })
   total: 'number';
 }
