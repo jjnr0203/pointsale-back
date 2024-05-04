@@ -41,7 +41,7 @@ export class OrderEntity {
   @Column({
     name: 'total',
     type: 'numeric',
-    scale:2
+    scale: 2,
   })
   total: 'number';
 }
