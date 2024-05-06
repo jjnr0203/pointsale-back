@@ -14,7 +14,7 @@ export class CustomerEntity {
   customerName: string;
 
   @Column({
-    name: 'contactName',
+    name: 'phone',
     type: 'numeric',
   })
   contactName: string;
@@ -26,20 +26,8 @@ export class CustomerEntity {
   address: string;
 
   @Column({
-    name: 'city',
+    name: 'email',
     type: 'varchar',
   })
-  city: string;
-
-  @Column({
-    name: 'postalCode',
-    type: 'numeric',
-  })
-  postalCode: string;
-
-  @Column({
-    name: 'country',
-    type: 'varchar',
-  })
-  country: string;
+  email: string;
 }
