@@ -30,7 +30,6 @@ export class UserEntity{
     password:string;
 
     @Column({type:'uuid',name:'role_id', nullable:false})
-    roleID:string
     @ManyToOne(()=> CatalogueEntity)
     @JoinColumn({name:'role_id', referencedColumnName:'id'})
     roleUser:CatalogueEntity;

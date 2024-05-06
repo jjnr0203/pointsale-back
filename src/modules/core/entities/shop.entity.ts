@@ -37,7 +37,6 @@ export class ShopEntity{
     email:string
 
     @Column({name:'user_id',type:'uuid', nullable:false})
-    userId:string
     @ManyToOne(()=>UserEntity)
     @JoinColumn({name:'user_id', referencedColumnName:'id'})
     user:UserEntity

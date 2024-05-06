@@ -27,11 +27,8 @@ export class EmployeeEntity {
     userId: string
 
     @Column({type:'uuid',name:'shop_id', nullable:false})
-    shopID:string
-
-    
     @ManyToOne(()=> ShopEntity)
     @JoinColumn({name:'shop_id', referencedColumnName:'id'})
-    roleUser:ShopEntity;
+    shop:ShopEntity;
     
 }
