@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { CatalogueEntity } from "./catalogue.entity";
 
 @Entity('products', {
   schema: 'core',
@@ -24,4 +25,9 @@ export class ProductEntity {
     type: 'numeric',
   })
   price: number;
+
+  @Column({ name: 'catalogue_id', type: 'uuid' })
+  @ManyToOne(() => CatalogueEntity)
+  @JoinColumn({ name: 'catalogue_id', referencedColumnName: 'id' })
+  catalogueId: string;
 }
