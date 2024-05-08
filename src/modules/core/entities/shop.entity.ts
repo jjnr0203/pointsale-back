@@ -58,7 +58,7 @@ export class ShopEntity {
       referencedColumnName: 'id',
     },
   })
-  productId: ProductEntity[];
+  products: ProductEntity[];
 
   @ManyToOne(() => UserEntity, { nullable: false })
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })

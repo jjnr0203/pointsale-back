@@ -7,8 +7,10 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { CustomerEntity } from './customer.entity';
+import { OrderdetailEntity } from './orderdetail.entity';
 
 @Entity('orders', { schema: 'core' })
 export class OrderEntity {
@@ -49,4 +51,8 @@ export class OrderEntity {
   @ManyToOne(() => CustomerEntity, { nullable: false })
   @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
   customerId: CustomerEntity;
+
+  @OneToMany(()=>OrderdetailEntity, orderDetail => orderDetail.order)
+  orderDetails:OrderdetailEntity[]
+
 }

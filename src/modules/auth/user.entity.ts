@@ -47,5 +47,5 @@ export class UserEntity {
 
   @ManyToOne(() => CatalogueEntity, { nullable: false })
   @JoinColumn({ name: 'role_id', referencedColumnName: 'id' })
-  roleUser: CatalogueEntity;
+  role: CatalogueEntity;
 }
