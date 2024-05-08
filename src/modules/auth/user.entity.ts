@@ -1,37 +1,51 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { CatalogueEntity } from "../core/entities/catalogue.entity";
+import {
+  BeforeInsert, BeforeUpdate,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn
+} from "typeorm";
+import { CatalogueEntity } from '../core/entities/catalogue.entity';
+import * as bcrypt from 'bcrypt';
 
-@Entity('users',{schema:'auth'})
-export class UserEntity{
-    @PrimaryGeneratedColumn('uuid')
-    id:string;
+@Entity('users', { schema: 'auth' })
+export class UserEntity {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @CreateDateColumn({
-        name: 'created_at',
-        type: 'timestamp',
-        default: () => 'CURRENT_TIMESTAMP',
-    })
-    createdAt: Date;
+  @CreateDateColumn({
+    name: 'created_at',
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  createdAt: Date;
 
-    @DeleteDateColumn({
-        name: 'deleted_at',
-        type: 'timestamp',
-        nullable: true,
-    })
-    deletedAt: Date;
-    
-    @Column({type:'varchar',name: 'name', nullable:false})
-    name:string;
+  @DeleteDateColumn({
+    name: 'deleted_at',
+    type: 'timestamp',
+    nullable: true,
+  })
+  deletedAt: Date;
 
-    @Column({type:'varchar', name:'email', nullable:false})
-    email:string;
+  @Column({ type: 'varchar', name: 'name', nullable: false })
+  name: string;
 
-    @Column({type:'varchar',name:'password', nullable:false})
-    password:string;
+  @Column({ type: 'varchar', name: 'email', nullable: false })
+  email: string;
 
-    @Column({type:'uuid',name:'role_id', nullable:false})
-    @ManyToOne(()=> CatalogueEntity)
-    @JoinColumn({name:'role_id', referencedColumnName:'id'})
-    roleUser:CatalogueEntity;
+  @Column({ type: 'varchar', name: 'password', nullable: false })
+  password: string;
 
+  @BeforeInsert()
+  @BeforeUpdate()
+  async passwordEncrypt() {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
+
+  @ManyToOne(() => CatalogueEntity, { nullable: false })
+  @JoinColumn({ name: 'role_id', referencedColumnName: 'id' })
+  roleUser: CatalogueEntity;
 }

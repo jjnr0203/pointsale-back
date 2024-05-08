@@ -46,8 +46,7 @@ export class OrderEntity {
   })
   total: 'number';
 
-  @Column({ name: 'customer_id', type: 'uuid', nullable: false })
-  @ManyToOne(() => CustomerEntity)
+  @ManyToOne(() => CustomerEntity, { nullable: false })
   @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
   customerId: CustomerEntity;
 }
