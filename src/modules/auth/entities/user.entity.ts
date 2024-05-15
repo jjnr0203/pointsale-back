@@ -8,7 +8,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn
 } from "typeorm";
-import { CatalogueEntity } from '../core/entities/catalogue.entity';
+import { CatalogueEntity } from '../../core/entities/catalogue.entity';
 import * as bcrypt from 'bcrypt';
 
 @Entity('users', { schema: 'auth' })
@@ -33,14 +33,13 @@ export class UserEntity {
   @Column({ type: 'varchar', name: 'name', nullable: false })
   name: string;
 
-  @Column({ type: 'varchar', name: 'email', nullable: false })
+  @Column({ type: 'varchar', name: 'email', nullable: false, unique:true })
   email: string;
 
   @Column({ type: 'varchar', name: 'password', nullable: false })
   password: string;
 
   @BeforeInsert()
-  @BeforeUpdate()
   async passwordEncrypt() {
     this.password = await bcrypt.hash(this.password, 10);
   }

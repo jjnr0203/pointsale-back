@@ -1,8 +1,7 @@
 import { CatalogueEntity } from "src/modules/core/entities/catalogue.entity";
 import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
 
-
-export class userDto{
+export class UserDto{
     @IsString()
     name: string;
     

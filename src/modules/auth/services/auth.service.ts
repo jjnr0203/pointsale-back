@@ -1,24 +1,28 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { userDto } from '../dto/user.dto';
-import { UserEntity } from '../user.entity';
+import {Inject, Injectable, NotFoundException} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+import {JwtService} from '@nestjs/jwt';
+import {UsersService} from './users.service';
+import {loginDto} from "../dto/login.dto";
+import {Repository} from "typeorm";
+import {UserEntity} from "../entities/user.entity";
 
 @Injectable()
 export class AuthService {
-
     constructor(
-        @Inject('USER_REPOSITORY')
-        private repository: Repository<UserEntity>
+        private jwtService: JwtService,
+        private usersService:UsersService
     ) {}
-
-    async findOne({email}:userDto){
-        const userFound = await this.repository.findOne({where:{email}})
-        if(!userFound){
-            throw new NotFoundException('usuario no encontrado');
+    async validateUser(payload: loginDto) {
+        const userFound = await this.usersService.findUserByEmail(payload.email)
+        if (!userFound) {
+            throw new NotFoundException('Usuario no encontrado');
         }
-        console.log(userFound);
-        return userFound
-
+        const isMatch = await bcrypt.compare(payload.password, userFound.password);
+        if (isMatch) {
+            const {password, ...user} = userFound;
+            return this.jwtService.signAsync(user);
+        } else {
+            throw new NotFoundException('Contraseña incorrecta')
+        }
     }
 }
