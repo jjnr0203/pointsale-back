@@ -1,10 +1,8 @@
-import {Inject, Injectable, NotFoundException} from '@nestjs/common';
+import {Injectable, NotFoundException} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import {JwtService} from '@nestjs/jwt';
 import {UsersService} from './users.service';
-import {loginDto} from "../dto/login.dto";
-import {Repository} from "typeorm";
-import {UserEntity} from "../entities/user.entity";
+import {LoginDto} from "../dto/login.dto";
 
 @Injectable()
 export class AuthService {
@@ -12,7 +10,7 @@ export class AuthService {
         private jwtService: JwtService,
         private usersService:UsersService
     ) {}
-    async validateUser(payload: loginDto) {
+    async validateUser(payload: LoginDto) {
         const userFound = await this.usersService.findUserByEmail(payload.email)
         if (!userFound) {
             throw new NotFoundException('Usuario no encontrado');
