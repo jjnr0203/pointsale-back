@@ -48,6 +48,12 @@ export class ProductEntity {
   })
   price: number;
 
+  @Column({
+    name: 'cost',
+    type: 'numeric',
+  })
+  cost: number;
+
   @ManyToOne(() => CatalogueEntity, { nullable: false })
   @JoinColumn({ name: 'catalogue_id', referencedColumnName: 'id' })
   catalogueId: string;

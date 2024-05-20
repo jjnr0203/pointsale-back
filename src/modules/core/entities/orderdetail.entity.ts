@@ -1,9 +1,12 @@
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { OrderEntity } from './order.entity';
 import { ProductEntity } from './product.entity';
@@ -15,6 +18,24 @@ export class OrderdetailEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @CreateDateColumn({
+    name: 'create_at',
+    type: 'timestamp',
+  })
+  createAt: Date;
+
+  @UpdateDateColumn({
+    name: 'update_at',
+    type: 'timestamp',
+  })
+  updateAt: Date;
+
+  @DeleteDateColumn({
+    name: 'delete_at',
+    type: 'timestamp',
+  })
+  deleteAt: Date;
+  
   @Column({
     name: 'quantity',
     type: 'numeric',

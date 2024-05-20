@@ -17,7 +17,7 @@ export class UsersService {
         return await this.repository.find();
     }
 
-    async findOne(id:string){
+    async findOne(id:string):Promise<UserEntity>{
         const user = await this.repository.findOne({
             where:{id},
             relations:{role:true}

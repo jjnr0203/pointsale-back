@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 require('dotenv').config()
-import { AuthService } from './services/auth.service';
-import { UsersService } from './services/users.service';
+import { AuthService, UsersService } from './services';
 import {JwtModule} from '@nestjs/jwt'
 import { UsersController } from './controllers/users.controller';
 import { AuthController } from './controllers/auth.controller';
