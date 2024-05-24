@@ -7,7 +7,7 @@ export class CatalogueController {
 
   @Get()
   async findAll() {
-    return this.cataloguesService.findAll();
+    return await this.cataloguesService.findAll();
   }
 
   @Get(':id')
@@ -18,8 +18,4 @@ export class CatalogueController {
       message: 'catalogos encontrados',
     };
   }
-
-  
-
-  
 }

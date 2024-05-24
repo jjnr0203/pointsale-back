@@ -6,40 +6,41 @@ import { OrderdetailEntity } from '../entities/orderdetail.entity'
 import { ProductEntity } from '../entities/product.entity'
 import { ShopEntity } from '../entities/shop.entity'
 import { OrderEntity } from '../entities/order.entity'
+import { CoreEnum } from 'src/modules/enums/providers.enum'
 
 export const coreProviders = [
     {
-        provide: 'CATALOGUE_REPOSITORY',
+        provide: CoreEnum.CATALOGUE_REPOSITORY,
         useFactory: (dataSource: DataSource) => dataSource.getRepository(CatalogueEntity),
         inject: ['DATA_SOURCE'],
     },
     {
-        provide: 'CUSTOMER_REPOSITORY',
+        provide: CoreEnum.CUSTOMER_REPOSITORY,
         useFactory: (dataSource: DataSource) => dataSource.getRepository(CustomerEntity),
         inject: ['DATA_SOURCE'],
     },
     {
-        provide: 'EMPLOYEE_REPOSITORY',
+        provide: CoreEnum.EMPLOYEE_REPOSITORY,
         useFactory: (dataSource: DataSource) => dataSource.getRepository(EmployeeEntity),
         inject: ['DATA_SOURCE'],
     },
     {
-        provide: 'ORDER_REPOSITORY',
+        provide: CoreEnum.ORDER_REPOSITORY,
         useFactory: (dataSource: DataSource) => dataSource.getRepository(OrderEntity),
         inject: ['DATA_SOURCE'],
     },
     {
-        provide: 'ORDERDETAIL_REPOSITORY',
+        provide: CoreEnum.ORDER_DETAIL_REPOSITORY,
         useFactory: (dataSource: DataSource) => dataSource.getRepository(OrderdetailEntity),
         inject: ['DATA_SOURCE'],
     },
     {
-        provide: 'PRODUCT_REPOSITORY',
+        provide: CoreEnum.PRODUCT_REPOSITORY,
         useFactory: (dataSource: DataSource) => dataSource.getRepository(ProductEntity),
         inject: ['DATA_SOURCE'],
     },
     {
-        provide: 'SHOP_REPOSITORY',
+        provide: CoreEnum.SHOP_REPOSITORY,
         useFactory: (dataSource: DataSource) => dataSource.getRepository(ShopEntity),
         inject: ['DATA_SOURCE'],
     },

@@ -3,11 +3,12 @@ import { Not, Repository } from "typeorm";
 import { OrderEntity } from "../entities/order.entity";
 import { OrderDto } from "../dto/order.dto";
 import { UpdateOrderDto } from "../dto/update-order.dto";
+import { CoreEnum } from "src/modules/enums/providers.enum";
 
 @Injectable()
 export class OrdersService {
     constructor(
-        @Inject('ORDERS_REPOSITORY')
+        @Inject(CoreEnum.ORDER_REPOSITORY)
         private repository: Repository<OrderEntity>
     ){}
 
