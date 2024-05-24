@@ -1,11 +1,11 @@
 import { UserEntity } from 'src/modules/auth/entities/user.entity';
 import {
-  Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -37,4 +37,5 @@ export class EmployeeEntity {
   @ManyToOne(() => ShopEntity, { nullable: false })
   @JoinColumn({ name: 'shop_id', referencedColumnName: 'id' })
   shop: ShopEntity;
+
 }
