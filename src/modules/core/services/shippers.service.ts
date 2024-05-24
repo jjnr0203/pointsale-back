@@ -19,7 +19,7 @@ export class ShippersService{
         return shipper;
     }
 
-    async create(id:string){
-        const data = this.repository.
+    async create(){
+        const data = this.repository.create()
     }
 }

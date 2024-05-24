@@ -6,6 +6,6 @@ export class UpdateOrderDto{
     paymentMethod: string;
     
     @IsString()
-    total: 'number';    
+    total: number;    
     
 }

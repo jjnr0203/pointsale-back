@@ -8,6 +8,6 @@ export class OrderDto{
     
     @IsNotEmpty()
     @IsString()
-    total: 'number';    
+    total: number;    
     
 }

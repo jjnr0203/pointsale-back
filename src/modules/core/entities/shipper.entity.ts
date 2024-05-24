@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('shippers',{schema: 'core'})
 export class ShipperEntity{
@@ -18,4 +18,3 @@ export class ShipperEntity{
     })
     delete_at: Date;   
 }
-
