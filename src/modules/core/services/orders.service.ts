@@ -1,5 +1,5 @@
 import { Inject, Injectable, NotFoundException } from "@nestjs/common";
-import { Repository } from "typeorm";
+import { Not, Repository } from "typeorm";
 import { OrderEntity } from "../entities/order.entity";
 import { OrderDto } from "../dto/order.dto";
 import { UpdateOrderDto } from "../dto/update-order.dto";
