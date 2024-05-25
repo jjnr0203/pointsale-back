@@ -26,16 +26,18 @@ export class CataloguesService {
     return catalogue;
   }
 
-  async update(id: string, catalogueDto: UpdateCatalogueDto) {
+  async update(id: string, updateCatalogueDto: UpdateCatalogueDto) {
     const catalogue = await this.repository.findBy({ id });
     if (!catalogue) {
       throw new NotFoundException('catálogo no encontrado');
     }
-    return this.repository.update(id, catalogueDto);
+    await this.repository.update(id, updateCatalogueDto);
+    return this.repository.findBy({id})
   }
 
   async create(catalogueDto: CatalogueDto) {
-    return await this.repository.create(catalogueDto);
+    const newcatalogue = await this.repository.create(catalogueDto);
+    return this.repository.save(newcatalogue)
   }
 
   async remove(id: string) {

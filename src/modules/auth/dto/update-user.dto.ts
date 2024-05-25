@@ -4,10 +4,10 @@ export class UpdateUserDto{
 
     @IsString()
     @IsOptional()
-    name?: string;
+    name: string;
     
     @IsString()
     @IsOptional()
-    password?:string 
+    password:string 
     
 }

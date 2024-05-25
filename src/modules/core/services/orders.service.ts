@@ -25,7 +25,7 @@ export class OrdersService {
         return order;
     }
 
-    async create(orderDto:OrderDto){
+    /* async create(orderDto:OrderDto){
         return this.repository.create(orderDto)
     }
 
@@ -35,7 +35,7 @@ export class OrdersService {
             throw new NotFoundException('No se encontro la order')
         }
         return this.repository.update(id, orderDto);
-    }
+    } */
 
     async remove(id:string){
         const order = await this.repository.findBy({id});

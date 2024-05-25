@@ -1,6 +1,6 @@
 import { Body, Delete, Get, Param, Post } from "@nestjs/common";
 import { OrderDetailsService } from "../services/orderdetails.service";
-import { OrderDetailDto } from "../dto/orderdetail.dto";
+import { OrderDetailDto } from "../dto/order-detail.dto";
 
 
 export class OrderDetailController{

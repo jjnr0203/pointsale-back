@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from "class-validator";
+import { OrderDetailDto } from "./order-detail.dto";
 
 export class OrderDto{
 
@@ -8,6 +9,12 @@ export class OrderDto{
     
     @IsNotEmpty()
     @IsString()
-    total: number;    
-    
+    customerId:string;
+
+    @IsNotEmpty()
+    @IsString()
+    shopId:string;
+
+    @IsNotEmpty()
+    orderDetails:OrderDetailDto[]
 }

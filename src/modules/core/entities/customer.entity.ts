@@ -26,18 +26,24 @@ export class CustomerEntity {
     nullable: true,
   })
   deletedAt: Date;
-
+  
   @Column({
-    name: 'customerName',
+    name: 'identification',
     type: 'varchar',
   })
-  customerName: string;
+  identification: string;
+
+  @Column({
+    name: 'name',
+    type: 'varchar',
+  })
+  name: string;
 
   @Column({
     name: 'phone',
     type: 'numeric',
   })
-  contactName: string;
+  phone: string;
 
   @Column({
     name: 'address',

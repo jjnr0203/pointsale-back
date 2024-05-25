@@ -1,8 +1,9 @@
-import { Body, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { OrdersService } from '../services/orders.service';
 import { OrderDto } from '../dto/order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';
 
+@Controller('orders')
 export class OrderController {
   constructor(private ordersService: OrdersService) {}
 
@@ -19,14 +20,14 @@ export class OrderController {
     };
   }
 
-  @Post('')
+  /* @Post('')
   async create(@Body() payload: OrderDto) {
     const serviceResponse = await this.ordersService.create(payload);
     return {
       data: serviceResponse,
       message: 'Orden creada',
     };
-  }
+  } */
 
   @Delete(':id')
   async delete(@Param('id') id: string) {
@@ -37,12 +38,12 @@ export class OrderController {
     };
   }
 
-  @Put(':id')
+  /* @Put(':id')
   async update(@Param('id') id:string, @Body() payload:UpdateOrderDto){
       const updatedUser = await this.ordersService.update(id,payload)
       return{
           data:updatedUser,
           message:'Usuario actualizado'
       }
-  }
+  } */
 }

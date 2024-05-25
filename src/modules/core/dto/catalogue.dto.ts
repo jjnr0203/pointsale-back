@@ -6,7 +6,6 @@ export class CatalogueDto{
     @IsString()
     name:string;
     
-    
     @IsNotEmpty()
     @IsString()
     description:string;
