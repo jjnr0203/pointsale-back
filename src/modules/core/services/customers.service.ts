@@ -35,7 +35,8 @@ export class CustomersService {
   }
 
   async create(customerDto: CustomerDto) {
-    return await this.repository.create(customerDto);
+    const newUser = await this.repository.create(customerDto);
+    return await this.repository.save(newUser)
   }
 
   async remove(id: string) {
