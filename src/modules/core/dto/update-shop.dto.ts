@@ -2,16 +2,16 @@ import { IsString } from "class-validator";
 
 export class UpdateShopDto{
     @IsString()
-    name: string;
+    name?: string;
 
     @IsString()
-    ruc: string;
+    ruc?: string;
 
     @IsString()
-    address: string;
+    address?: string;
 
     @IsString()
-     phone: string;
+     phone?: string;
 
     @IsString()
      email: string;

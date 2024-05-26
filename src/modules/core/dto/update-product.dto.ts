@@ -3,14 +3,14 @@ import { IsString } from "class-validator";
 export class UpdateProductDto{
 
     @IsString()
-    name: string;
+    name?: string;
 
     @IsString()
-    unit: number;
+    unit?: number;
 
     @IsString()
-    price: number;
+    price?: number;
 
     @IsString()
-    cost: number;
+    cost?: number;
 }

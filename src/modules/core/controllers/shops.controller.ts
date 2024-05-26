@@ -1,36 +1,37 @@
-import { Body, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { ShopsService } from "../services/shops.service";
 import { ShopDto } from "../dto/shop.dto";
 
+@Controller('shops')
 export class ShopController{
-    constructor(private shopService: ShopsService){}
+    constructor(private shopsService: ShopsService){}
 
     @Get()
     async findAll(){
-        return this.shopService.finAll();
+        return await this.shopsService.findAll();
     }
 
-    @Get('ruc')
-    async findOne(@Param('ruc')id:string){
-        const data =this.shopService.findOne('id');
+    @Get(':id')
+    async findOne(@Param('id')id:string){
+        const data = await this.shopsService.findOne(id);
         return{
-            date: Date,
+            data: data,
             message: 'Producto Encontrado'
         }
     }
 
     @Post()
     async create(@Body()payload:ShopDto){
-        const serviceResponse = await this.shopService.create(payload);
+        const serviceResponse = await this.shopsService.create(payload);
         return{
             date: serviceResponse,
             message: 'Producto Creado'
         }
     }
 
-    @Delete('ruc')
-    async delete(@Param('ruc') id: string) {
-        const serviceResponse = await this.shopService.remove(id)
+    @Delete(':id')
+    async delete(@Param('id') id: string) {
+        const serviceResponse = await this.shopsService.remove(id)
         return {
             data: serviceResponse,
             message: 'Producto eliminado'

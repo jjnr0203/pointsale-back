@@ -3,15 +3,16 @@ import { Repository } from "typeorm";
 import { ProductEntity } from "../entities/product.entity";
 import { ProductDto } from "../dto/product.dto";
 import { UpdateProductDto } from "../dto/update-product.dto";
+import { CoreEnum } from "src/modules/enums/providers.enum";
 
  @Injectable()
  export class ProductsService{
     constructor(
-        @Inject('PRODUCTS_REPOSITORY')
+        @Inject(CoreEnum.PRODUCT_REPOSITORY)
         private respository: Repository<ProductEntity>
     ){}
 
-    async finAll(){
+    async findAll(){
         return await this.respository.find();
     }
 

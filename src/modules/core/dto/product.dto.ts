@@ -18,4 +18,7 @@ export class ProductDto{
     @IsString()
     cost: number;
     
+    @IsNotEmpty()
+    catalogueId: string;
+    
 }

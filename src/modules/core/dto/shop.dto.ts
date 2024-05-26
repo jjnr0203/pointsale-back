@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { UserEntity } from "src/modules/auth/entities/user.entity";
 
 export class ShopDto{
     @IsNotEmpty()
@@ -17,7 +18,10 @@ export class ShopDto{
     @IsString()
      phone: string;
 
-    @IsNotEmpty()
     @IsString()
-     email: string;
+    @IsEmail()
+    email: string;
+
+    @IsNotEmpty()
+    user: UserEntity;
 }
