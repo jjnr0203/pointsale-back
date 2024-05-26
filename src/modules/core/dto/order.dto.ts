@@ -15,6 +15,4 @@ export class OrderDto{
     @IsString()
     shopId:string;
 
-    @IsNotEmpty()
-    orderDetails:OrderDetailDto[]
 }
