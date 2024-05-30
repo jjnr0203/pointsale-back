@@ -9,7 +9,11 @@ export class CustomerController {
 
   @Get()
   async findAll() {
-    return await this.customersService.findAll();
+    const data = await this.customersService.findAll();
+    return { 
+      data:data,
+      message:'customers encontrados'
+    }
   }
 
   @Get(':id')

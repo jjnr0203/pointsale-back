@@ -4,7 +4,7 @@ import { OrderDto } from '../dto/order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';
 
 @Controller('orders')
-export class OrderController {
+export class OrdersController {
   constructor(private ordersService: OrdersService) {}
 
   @Get()
@@ -20,14 +20,14 @@ export class OrderController {
     };
   }
 
-  /* @Post('')
+  @Post('')
   async create(@Body() payload: OrderDto) {
     const serviceResponse = await this.ordersService.create(payload);
     return {
       data: serviceResponse,
       message: 'Orden creada',
     };
-  } */
+  }
 
   @Delete(':id')
   async delete(@Param('id') id: string) {

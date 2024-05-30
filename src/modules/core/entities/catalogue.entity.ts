@@ -15,9 +15,12 @@ export class CatalogueEntity {
   @Column({ type: 'varchar', name: 'name', nullable:false })
   name: string;
 
+  @Column({ type: 'int', name: 'code', nullable:false })
+  code: number;
+
   @Column({ type: 'varchar', name: 'description' })
   description: string;
 
-  @Column({ type: 'varchar', name: 'type' })
+  @Column({ type: 'varchar', name: 'type', nullable:false })
   type: string;
 }

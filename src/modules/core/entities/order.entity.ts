@@ -37,16 +37,18 @@ export class OrderEntity {
   })
   deletedAt: Date;
 
-  @ManyToOne(() => CatalogueEntity, { nullable: false })
+
+  // volver a colocar nullable
+  @ManyToOne(() => CatalogueEntity)
   @JoinColumn({ name: 'payment_id', referencedColumnName: 'id' })
   paymentMethod: CatalogueEntity;
 
 
-  @ManyToOne(() => ShopEntity, { nullable: false })
+  @ManyToOne(() => ShopEntity, {nullable:false})
   @JoinColumn({ name: 'shop_id', referencedColumnName: 'id' })
-  shopId: CustomerEntity;
+  shopId: ShopEntity;
 
-  @ManyToOne(() => CustomerEntity, { nullable: false })
+  @ManyToOne(() => CustomerEntity)
   @JoinColumn({ name: 'customer_id', referencedColumnName: 'id' })
   customerId: CustomerEntity;
 
