@@ -3,8 +3,6 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   DeleteDateColumn,
-  UpdateDateColumn,
-  Column,
   ManyToOne,
   JoinColumn,
   OneToMany,
@@ -16,31 +14,26 @@ import { ShopEntity } from './shop.entity';
 
 @Entity('orders', { schema: 'core' })
 export class OrderEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', {comment:'Identificador único de la orden'})
   id: string;
 
   @CreateDateColumn({
     name: 'create_at',
     type: 'timestamp',
+    comment: 'Fecha de creación'
   })
   createdAt: Date;
-
-  @UpdateDateColumn({
-    name: 'update_at',
-    type: 'timestamp',
-  })
-  updatedAt: Date;
 
   @DeleteDateColumn({
     name: 'delete_at',
     type: 'timestamp',
+    comment: 'Registro de borrado'
   })
   deletedAt: Date;
 
 
-  // volver a colocar nullable
   @ManyToOne(() => CatalogueEntity)
-  @JoinColumn({ name: 'payment_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'payment_id', referencedColumnName: 'id'})
   paymentMethod: CatalogueEntity;
 
 

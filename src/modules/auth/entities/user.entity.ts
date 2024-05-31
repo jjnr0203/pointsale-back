@@ -1,5 +1,5 @@
 import {
-  BeforeInsert, BeforeUpdate,
+  BeforeInsert, 
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -13,12 +13,13 @@ import * as bcrypt from 'bcrypt';
 
 @Entity('users', { schema: 'auth' })
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', {comment:'Identificador único del usuario'})
   id: string;
 
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamp',
+    comment: 'Fecha de creación',
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date;
@@ -27,16 +28,17 @@ export class UserEntity {
     name: 'deleted_at',
     type: 'timestamp',
     nullable: true,
+    comment: 'Registro de borrado'
   })
   deletedAt: Date;
 
-  @Column({ type: 'varchar', name: 'name', nullable: false })
+  @Column({ type: 'varchar', name: 'name', nullable: false, comment:'Nombre de usuario dentro de la aplicación' })
   name: string;
 
-  @Column({ type: 'varchar', name: 'email', nullable: false, unique:true })
+  @Column({ type: 'varchar', name: 'email', nullable: false, unique:true, comment:'Correo para autenticación' })
   email: string;
 
-  @Column({ type: 'varchar', name: 'password', nullable: false })
+  @Column({ type: 'varchar', name: 'password', nullable: false, comment:'Clave para autenticación' })
   password: string;
 
   @BeforeInsert()
