@@ -11,6 +11,7 @@ export class OrdersController {
   async findAll() {
     return this.ordersService.findAll();
   }
+  
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const data = this.ordersService.findOne(id);
