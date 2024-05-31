@@ -1,20 +1,15 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class CatalogueDto{
+export class OrderDetailDto{
 
     @IsNotEmpty()
-    @IsString()
-    name:string;
-    
+    orderID:string
+
     @IsNotEmpty()
     @IsNumber()
-    code:number
+    quantity: number;
     
-    @IsNotEmpty()
     @IsString()
-    description:string;
-    
     @IsNotEmpty()
-    @IsString()
-    type:string
+    productID: string;
 }

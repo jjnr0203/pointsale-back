@@ -12,19 +12,19 @@ import { CoreEnum } from "src/modules/enums/providers.enum";
         private respository: Repository<ShopEntity>
     ){}
 
-    async findAll(){
+    async findAll(): Promise<ShopEntity[]> {
         return await this.respository.find();
     }
 
-    async findOne(id:string){
+    async findOne(id:string) {
         const shop = await this.respository.findOne({
-            where: {id},
+            where: { id },
         });
         
         if(!shop) {
-            throw new NotFoundException('Tienda no encontrada');
+            throw new NotFoundException('Tienda no encontrada')
         }
-        return shop;
+            return shop;
     }
 
     async create(shopDto:ShopDto){

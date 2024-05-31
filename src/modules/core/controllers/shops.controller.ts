@@ -1,40 +1,54 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { ShopsService } from "../services/shops.service";
 import { ShopDto } from "../dto/shop.dto";
+import { UpdateShopDto } from "../dto/update-shop.dto";
 
 @Controller('shops')
-export class ShopController{
+export class ShopsController{
     constructor(private shopsService: ShopsService){}
 
     @Get()
-    async findAll(){
-        return await this.shopsService.findAll();
+    async findAll() {
+        const data = await this.shopsService.findAll();
+        return {
+            data: data,
+            message: 'Tienda encontrada'
+        } 
     }
 
     @Get(':id')
-    async findOne(@Param('id')id:string){
-        const data = await this.shopsService.findOne(id);
-        return{
+    async findOne(@Param('id') id:string){
+        const data = await this.shopsService.findOne(id) 
+        return {
             data: data,
-            message: 'Producto Encontrado'
+            message: 'Tienda Encontrada'
         }
     }
 
-    @Post()
-    async create(@Body()payload:ShopDto){
-        const serviceResponse = await this.shopsService.create(payload);
+    @Put(':id')
+    async update(@Param('id') id:string, @Body() payload:UpdateShopDto){
+        const data = await this.shopsService.update(id,payload)
         return{
-            date: serviceResponse,
-            message: 'Producto Creado'
+            data:data,
+            message:'Tienda actualizada',
         }
+    }
+
+    @Post('')
+    async create(@Body() payload: ShopDto) {
+        const data = await this.shopsService.create(payload);
+        return {
+            data: data,
+            message: 'Tienda creada'
+        };
     }
 
     @Delete(':id')
-    async delete(@Param('id') id: string) {
-        const serviceResponse = await this.shopsService.remove(id)
+    async remove(@Param('id') id: string) {
+        const data = await this.shopsService.remove(id)
         return {
-            data: serviceResponse,
-            message: 'Producto eliminado'
+            data: data,
+            message: 'Tienda eliminada'
         }
-}
+   }
 }

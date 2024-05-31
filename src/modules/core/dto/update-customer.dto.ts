@@ -1,18 +1,15 @@
 import { IsString } from "class-validator";
 
-export class UpdateShopDto{
+export class UpdateCustomerDto{
     @IsString()
-    name: string;
-
+    customerName: string;
+    
     @IsString()
-    ruc: string;
-
+    contactName: string;
+    
     @IsString()
     address: string;
 
     @IsString()
-     phone: string;
-
-    @IsString()
-     email: string;
+    email: string;
 }

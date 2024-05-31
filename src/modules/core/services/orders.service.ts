@@ -26,7 +26,8 @@ export class OrdersService {
     }
 
     async create(orderDto:OrderDto){
-        return this.repository.create(orderDto)
+        const newOrder = this.repository.create(orderDto)
+        return this.repository.save(newOrder)
     }
 
     async update(id:string, orderDto:UpdateOrderDto){

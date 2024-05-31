@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
-import { OrderdetailEntity } from "../entities/orderdetail.entity";
-import { OrderDetailDto } from "../dto/orderdetail.dto";
+import { OrderdetailEntity } from "../entities/order-detail.entity";
+import { OrderDetailDto } from "../dto/order-detail.dto";
 import { UpadateOrderDetailDto } from "../dto/update-orderdetail.dto";
 
 @Injectable()
