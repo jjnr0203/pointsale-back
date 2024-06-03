@@ -23,10 +23,10 @@ export class OrdersController {
 
   @Post('')
   async create(@Body() payload: OrderDto) {
-    const serviceResponse = await this.ordersService.create(payload);
+    const data = this.ordersService.create(payload)
     return {
-      data: serviceResponse,
-      message: 'Orden creada',
+      data: data,
+      message: 'Venta exitosa',
     };
   }
 

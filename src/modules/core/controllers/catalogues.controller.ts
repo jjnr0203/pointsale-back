@@ -1,15 +1,20 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { CataloguesService } from '../services/catalogues.service';
 import { CatalogueDto } from '../dto/catalogue.dto';
 import { UpdateCatalogueDto } from '../dto/update-catalogue.dto';
+import { query } from 'express';
 
 @Controller('catalogues')
 export class CatalogueController {
   constructor(private cataloguesService: CataloguesService) {}
 
   @Get()
-  async findAll() {
-    return await this.cataloguesService.findAll();
+  async findByType(@Query('type')type:string) {
+    const data = await this.cataloguesService.findByType(type)
+    return {
+      data:data,
+      message:'catálogos encontrados'
+    }
   }
 
   @Get(':id')

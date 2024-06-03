@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CatalogueDto{
 
@@ -6,7 +6,7 @@ export class CatalogueDto{
     @IsString()
     name:string;
     
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
     code:number
     

@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm'
 import { CatalogueEntity } from '../entities/catalogue.entity'
 import { CustomerEntity } from '../entities/customer.entity'
 import { EmployeeEntity } from '../entities/employee.entity'
-import { OrderdetailEntity } from '../entities/order-detail.entity'
+import { OrderDetailEntity } from '../entities/order-detail.entity'
 import { ProductEntity } from '../entities/product.entity'
 import { ShopEntity } from '../entities/shop.entity'
 import { OrderEntity } from '../entities/order.entity'
@@ -31,7 +31,7 @@ export const coreProviders = [
     },
     {
         provide: CoreEnum.ORDER_DETAIL_REPOSITORY,
-        useFactory: (dataSource: DataSource) => dataSource.getRepository(OrderdetailEntity),
+        useFactory: (dataSource: DataSource) => dataSource.getRepository(OrderDetailEntity),
         inject: ['DATA_SOURCE'],
     },
     {

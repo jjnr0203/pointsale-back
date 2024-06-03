@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 import { OrderDetailDto } from "./order-detail.dto";
 import { CatalogueEntity } from "../entities/catalogue.entity";
 import { ShopEntity } from "../entities/shop.entity";
@@ -6,16 +6,23 @@ import { CustomerEntity } from "../entities/customer.entity";
 
 export class OrderDto{
 
-    @IsOptional()
-    @IsString()
+    @IsNotEmpty()
     paymentMethod: CatalogueEntity;
     
-    @IsOptional()
-    @IsString()
-    customerId:CustomerEntity;
+    @IsNotEmpty()
+    customer:CustomerEntity;
     
     @IsNotEmpty()
-    @IsString()
-    shopId:ShopEntity;
+    shop:ShopEntity;
+
+    @IsOptional()
+    @IsNumber()
+    cash:number;
+    
+    @IsOptional()
+    @IsNumber()
+    cashBack:number;
+
+    ordersDetails:OrderDetailDto[]
 
 }

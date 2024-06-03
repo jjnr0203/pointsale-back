@@ -14,7 +14,7 @@ import { ProductEntity } from './product.entity';
 @Entity('orderdetails', {
   schema: 'core'
 })
-export class OrderdetailEntity {
+export class OrderDetailEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

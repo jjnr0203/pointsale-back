@@ -1,15 +1,16 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { OrderEntity } from "../entities/order.entity";
+import { ProductEntity } from "../entities/product.entity";
 
 export class OrderDetailDto{
-
-    @IsNotEmpty()
-    orderID:string
 
     @IsNotEmpty()
     @IsNumber()
     quantity: number;
     
-    @IsString()
     @IsNotEmpty()
-    productID: string;
+    order: OrderEntity;
+    
+    @IsNotEmpty()
+    product: ProductEntity; 
 }

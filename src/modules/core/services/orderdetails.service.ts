@@ -1,14 +1,15 @@
 import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
-import { OrderdetailEntity } from "../entities/order-detail.entity";
+import { OrderDetailEntity } from "../entities/order-detail.entity";
 import { OrderDetailDto } from "../dto/order-detail.dto";
-import { UpadateOrderDetailDto } from "../dto/update-orderdetail.dto";
+import { UpadateOrderDetailDto } from "../dto/update-order-detail.dto";
+import { CoreEnum } from "src/modules/enums/providers.enum";
 
 @Injectable()
 export class OrderDetailsService{
     constructor(
-        @Inject('ORDERDETAILS_REPOSITORY') 
-        private respository: Repository<OrderdetailEntity>
+        @Inject(CoreEnum.ORDER_DETAIL_REPOSITORY) 
+        private respository: Repository<OrderDetailEntity>
     ){}
 
     async finAll(){
