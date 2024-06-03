@@ -2,10 +2,10 @@ import { IsString } from "class-validator";
 
 export class UpdateCustomerDto{
     @IsString()
-    customerName: string;
+    identification: string;
     
     @IsString()
-    contactName: string;
+    phone: string;
     
     @IsString()
     address: string;
