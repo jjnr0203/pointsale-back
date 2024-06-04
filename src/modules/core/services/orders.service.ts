@@ -41,7 +41,7 @@ export class OrdersService {
       return newOrder;
     } catch (error) {
       console.error(error);
-      throw new Error('Error en la venta');
+      throw new Error('Error al realizar la venta');
     }
   }
 
