@@ -14,7 +14,7 @@ import { ShopEntity } from './shop.entity';
 
 @Entity('employees', { schema: 'core' })
 export class EmployeeEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid', {comment: "Identificador del empleado"})
   id: string;
 
   @CreateDateColumn({
