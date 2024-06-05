@@ -48,7 +48,7 @@ export class ShopEntity {
 
   @ManyToMany(() => ProductEntity)
   @JoinTable({
-    name: 'products_shops',
+    name: 'product_shop',
     joinColumn: {
       name: 'shop_id',
       referencedColumnName: 'id',
@@ -61,6 +61,6 @@ export class ShopEntity {
   products: ProductEntity[];
 
   @ManyToOne(() => UserEntity, { nullable: false })
-  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id', foreignKeyConstraintName:'shop_user_id_foreign_key' })
   user: UserEntity;
 }
