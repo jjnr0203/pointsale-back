@@ -51,7 +51,7 @@ export class SupplierEntity {
   email: String;
 
   @ManyToOne(() => ShipperEntity, { nullable: false })
-  @JoinColumn({ name: 'shipper_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'shipper_id', referencedColumnName: 'id'})
   shipper: ShipperEntity;
 
   @ManyToMany(() => ShopEntity)
