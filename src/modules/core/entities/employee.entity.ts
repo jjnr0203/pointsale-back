@@ -20,6 +20,7 @@ export class EmployeeEntity {
   @CreateDateColumn({
     name: 'created_at',
     type: 'timestamp',
+    comment: 'Creacion',
     default: () => 'CURRENT_TIMESTAMP',
   })
   createdAt: Date;
@@ -27,15 +28,16 @@ export class EmployeeEntity {
   @DeleteDateColumn({
     name: 'delete_at',
     type: 'timestamp',
+    comment: 'Registro de borrado'
   })
   deleteAt: Date;
 
   @OneToOne(() => UserEntity)
-  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id', foreignKeyConstraintName: 'employe_user_id_foreingn_key' })
   userId: string;
 
   @ManyToOne(() => ShopEntity, { nullable: false })
-  @JoinColumn({ name: 'shop_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'shop_id', referencedColumnName: 'id', foreignKeyConstraintName: 'employes_shop_id_foreign_key'})
   shop: ShopEntity;
 
 }
