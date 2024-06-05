@@ -28,12 +28,6 @@ export class ShippersService{
         return await this.repository.save(newShipper)
     }
 
-    /* async update(id:string, updateShippeDto:UpdateShipperDto){
-        const shipper = await this.repository.findOne({
-            where:{}
-        })
-    } */
-
     async remove(id:string){
         const shipper = await this.repository.findOneBy({id})
         if(!shipper){
