@@ -1,7 +1,6 @@
 import { Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { ShippersService } from "../services/shippers.service";
 import { ShipperDto } from "../dto/shipper.dto";
-import { SupplierDto } from "../dto/supplier.dto";
 
 @Controller()
 export class ShippersController{
@@ -28,8 +27,8 @@ export class ShippersController{
     }
 
     @Post('')
-    async create(@Param() ShipperDto:ShipperDto){
-        const serviceResponse = await this.shippersService.create(SupplierDto)
+    async create(@Param() shipperDto:ShipperDto){
+        const serviceResponse = await this.shippersService.create(shipperDto)
         return {
             data: serviceResponse,
             message: 'Shipper Creado'
