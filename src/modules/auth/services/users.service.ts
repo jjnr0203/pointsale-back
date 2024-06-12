@@ -60,4 +60,12 @@ export class UsersService {
         if(!user){throw new NotFoundException('Usuario no encontrado')}
         return this.repository.softRemove(user);
     }
+
+    async delete(id:string){
+        const user = await this.repository.findOne({
+            where:{id},
+            relations:{role:true}
+        })
+        return this.repository.delete(user.id);
+    }
 }
