@@ -28,6 +28,14 @@ export class ShippersService{
         return await this.repository.save(newShipper)
     }
 
+    /* async update(id:string, updateShipper:UpdateShipperDto){
+        const shipper = await this.repository.findOne({where:{id}});
+        if(!shipper){
+            throw new NotFoundException('Proveedor no encontrado')
+        }
+        return this.repository.update(id,updateShipper);
+    } */
+
     async remove(id:string){
         const shipper = await this.repository.findOneBy({id})
         if(!shipper){
