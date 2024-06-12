@@ -16,6 +16,7 @@ import { ShippersService } from './services/shippers.service';
 import { EmployesService } from './services/employes.service';
 import { SuppliersController } from './controllers/suppliers.controller';
 import { ShippersController } from './controllers/shippers.controller';
+import { EmployeesController } from './controllers/employees.controller';
 
 @Module({
     imports:[DatabaseModule],
@@ -35,7 +36,8 @@ import { ShippersController } from './controllers/shippers.controller';
         ProductsController,
         ShopsController,
         SuppliersController,
-        ShippersController
+        ShippersController,
+        EmployeesController 
     ],
     exports:[]
 })

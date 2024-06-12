@@ -28,42 +28,50 @@ export class SupplierEntity {
     default: () => 'CURRENT_TIMESTAMP',
   })
   create_at: Date;
-  
+
   @DeleteDateColumn({
     name: 'delete_at',
     type: 'timestamp',
     comment: 'Registro del borrado',
   })
   delete_at: Date;
-  
+
   @Column({
     name: 'supplier_name',
     type: 'varchar',
-    comment: 'Nombre del cargador',
+    comment: 'Nombre del proveedor',
   })
-  name: string;
-  
+  supplierName: string;
+
   @Column({
     name: 'phone',
     type: 'varchar',
-    comment: 'Numero celular del cargador',
+    comment: 'Numero celular del proveedor',
   })
   phone: string;
-  
+
   @Column({
     name: 'contact_email',
     type: 'varchar',
-    comment: 'Correo del cargador',
+    comment: 'Correo del proveedor',
   })
   contactEmail: string;
 
   @ManyToOne(() => ShipperEntity, { nullable: false })
-  @JoinColumn({ name: 'shipper_id', referencedColumnName: 'id', foreignKeyConstraintName:'suppliers_shipper_id_foreign_key'})
+  @JoinColumn({
+    name: 'shipper_id',
+    referencedColumnName: 'id',
+    foreignKeyConstraintName: 'suppliers_shipper_id_foreign_key',
+  })
   shipper: ShipperEntity;
 
   @OneToOne(() => UserEntity)
-    @JoinColumn({ name: 'user_id', referencedColumnName: 'id', foreignKeyConstraintName:'suppliers_user_id_foreign_key' })
-    userId: string;
+  @JoinColumn({
+    name: 'user_id',
+    referencedColumnName: 'id',
+    foreignKeyConstraintName: 'suppliers_user_id_foreign_key',
+  })
+  user: string;
 
   @ManyToMany(() => ShopEntity)
   @JoinTable({

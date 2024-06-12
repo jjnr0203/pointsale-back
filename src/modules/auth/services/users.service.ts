@@ -13,8 +13,9 @@ export class UsersService {
         private repository: Repository<UserEntity>
     ){}
 
-    async findAll(): Promise<UserEntity[]> {
-        return await this.repository.find();
+    async findAll(){
+        const foundUsers = await this.repository.find();
+        return foundUsers
     }
 
     async findOne(id:string):Promise<UserEntity>{
@@ -55,17 +56,7 @@ export class UsersService {
         return this.repository.findBy({id})
     }
 
-    async remove(id:string){
-        const user = await this.repository.findOneBy({id})
-        if(!user){throw new NotFoundException('Usuario no encontrado')}
-        return this.repository.softRemove(user);
-    }
-
-    async delete(id:string){
-        const user = await this.repository.findOne({
-            where:{id},
-            relations:{role:true}
-        })
-        return this.repository.delete(user.id);
+    async remove(id:string){   
+        return this.repository.softDelete(id);
     }
 }

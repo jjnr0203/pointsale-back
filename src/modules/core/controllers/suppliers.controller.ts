@@ -3,14 +3,13 @@ import { SuppliersService } from "../services/suppliers.service";
 import { UpdateSupplierDto } from "../dto/update-supplier.dto";
 import { SupplierDto } from "../dto/supplier.dto";
 
-@Controller()
+@Controller('suppliers')
 export class SuppliersController{
     constructor(private suppliersService:SuppliersService){}
 
     @Get()
     async findAll(){
         const serviceResponse = await this.suppliersService.findAll()
-        console.log(serviceResponse)
         return {
             data: serviceResponse,
             message: 'Suppliers'

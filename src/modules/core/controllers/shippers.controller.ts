@@ -2,7 +2,7 @@ import { Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { ShippersService } from "../services/shippers.service";
 import { ShipperDto } from "../dto/shipper.dto";
 
-@Controller()
+@Controller('shipper')
 export class ShippersController{
     constructor(private shippersService:ShippersService){}
 

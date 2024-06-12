@@ -10,7 +10,7 @@ import { SupplierEntity } from "../entities/supplier.entity";
 export class ShippersService{
     constructor(
         @Inject(CoreEnum.SHIPPER_REPOSITORY) 
-        private repository:Repository<SupplierEntity>
+        private repository:Repository<ShipperEntity>
     ){}
 
     async findAll(){

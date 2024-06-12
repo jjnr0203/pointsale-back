@@ -23,6 +23,6 @@ export class ShipperEntity{
 
     @OneToOne(() => UserEntity)
     @JoinColumn({ name: 'user_id', referencedColumnName: 'id', foreignKeyConstraintName:'shipper_user_id_foreign_key' })
-    userId: string;
+    user: UserEntity;
 
 }

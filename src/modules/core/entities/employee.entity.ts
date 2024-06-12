@@ -34,7 +34,7 @@ export class EmployeeEntity {
 
   @OneToOne(() => UserEntity)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id', foreignKeyConstraintName: 'employe_user_id_foreingn_key' })
-  userId: string;
+  user: UserEntity;
 
   @ManyToOne(() => ShopEntity, { nullable: false })
   @JoinColumn({ name: 'shop_id', referencedColumnName: 'id', foreignKeyConstraintName: 'employes_shop_id_foreign_key'})
