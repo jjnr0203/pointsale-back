@@ -8,11 +8,13 @@ import {
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ShipperEntity } from './shipper.entity';
 import { ShopEntity } from './shop.entity';
 import { ProductEntity } from './product.entity';
+import { UserEntity } from 'src/modules/auth/entities/user.entity';
 
 @Entity('supplier', { schema: 'core' })
 export class SupplierEntity {
@@ -35,7 +37,7 @@ export class SupplierEntity {
   delete_at: Date;
   
   @Column({
-    name: 'shipperName',
+    name: 'supplier_name',
     type: 'varchar',
     comment: 'Nombre del cargador',
   })
@@ -49,15 +51,19 @@ export class SupplierEntity {
   phone: string;
   
   @Column({
-    name: 'email',
+    name: 'contact_email',
     type: 'varchar',
     comment: 'Correo del cargador',
   })
-  email: string;
+  contactEmail: string;
 
   @ManyToOne(() => ShipperEntity, { nullable: false })
   @JoinColumn({ name: 'shipper_id', referencedColumnName: 'id', foreignKeyConstraintName:'suppliers_shipper_id_foreign_key'})
   shipper: ShipperEntity;
+
+  @OneToOne(() => UserEntity)
+    @JoinColumn({ name: 'user_id', referencedColumnName: 'id', foreignKeyConstraintName:'suppliers_user_id_foreign_key' })
+    userId: string;
 
   @ManyToMany(() => ShopEntity)
   @JoinTable({

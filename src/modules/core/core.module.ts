@@ -11,11 +11,32 @@ import { ProductsController } from './controllers/products.controller';
 import { ProductsService } from './services/products.service';
 import { ShopsController } from './controllers/shops.controller';
 import { ShopsService } from './services/shops.service';
+import { SuppliersService } from './services/suppliers.service';
+import { ShippersService } from './services/shippers.service';
+import { EmployesService } from './services/employes.service';
+import { SuppliersController } from './controllers/suppliers.controller';
+import { ShippersController } from './controllers/shippers.controller';
 
 @Module({
     imports:[DatabaseModule],
-    providers: [...coreProviders,CustomersService,OrdersService,CataloguesService, ProductsService, ShopsService],
-    controllers: [CatalogueController, OrdersController, CustomerController, ProductsController, ShopsController],
+    providers: [...coreProviders,
+        CustomersService,
+        OrdersService,
+        CataloguesService,
+        ProductsService,
+        ShopsService,
+        SuppliersService,
+        ShippersService,
+        EmployesService
+     ],
+    controllers: [CatalogueController,
+        OrdersController,
+        CustomerController,
+        ProductsController,
+        ShopsController,
+        SuppliersController,
+        ShippersController
+    ],
     exports:[]
 })
 export class CoreModule {}

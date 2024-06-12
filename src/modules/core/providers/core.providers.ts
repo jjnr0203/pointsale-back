@@ -7,6 +7,8 @@ import { ProductEntity } from '../entities/product.entity'
 import { ShopEntity } from '../entities/shop.entity'
 import { OrderEntity } from '../entities/order.entity'
 import { CoreEnum } from 'src/modules/enums/providers.enum'
+import { ShipperEntity } from '../entities/shipper.entity'
+import { SupplierEntity } from '../entities/supplier.entity'
 
 export const coreProviders = [
     {
@@ -42,6 +44,16 @@ export const coreProviders = [
     {
         provide: CoreEnum.SHOP_REPOSITORY,
         useFactory: (dataSource: DataSource) => dataSource.getRepository(ShopEntity),
+        inject: ['DATA_SOURCE'],
+    },
+    {
+        provide: CoreEnum.SHIPPER_REPOSITORY,
+        useFactory: (dataSource: DataSource) => dataSource.getRepository(ShipperEntity),
+        inject: ['DATA_SOURCE'],
+    },
+    {
+        provide: CoreEnum.SUPPLIER_REPOSITORY,
+        useFactory: (dataSource: DataSource) => dataSource.getRepository(SupplierEntity),
         inject: ['DATA_SOURCE'],
     },
 ]

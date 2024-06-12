@@ -44,7 +44,7 @@ export class OrdersService {
       throw new Error('Error al realizar la venta');
     }
   }
-
+  
   async update(id: string, orderDto: UpdateOrderDto) {
     const order = await this.repository.findBy({ id });
     if (!order) {
@@ -54,7 +54,7 @@ export class OrdersService {
   }
 
   async remove(id: string) {
-    const order = await this.repository.findBy({ id });
-    return this.repository.softRemove(order);
+    const deletedOrder = await this.repository.softDelete(id);
+    return deletedOrder
   }
 }
