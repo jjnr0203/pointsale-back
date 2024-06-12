@@ -42,8 +42,9 @@ export class SuppliersService{
 
     async remove(id:string){
         const supplier = await this.repository.findOneBy({id})
-        if(!supplier){throw new NotFoundException('Usuario no encontrado')}
-        return this.repository.softRemove(supplier);
+        if(!supplier){
+            throw this.repository.softRemove(supplier);
+        }
     }
 
 }
