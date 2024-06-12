@@ -61,6 +61,6 @@ export class ProductEntity {
   cost: number;
 
   @ManyToOne(() => CatalogueEntity, { nullable: true })
-  @JoinColumn({ name: 'catalogue_id', referencedColumnName: 'id'})
+  @JoinColumn({ name: 'catalogue_id', referencedColumnName: 'id', foreignKeyConstraintName:'product_catalogue_id_foreign_key'})
   catalogueId: string;
 }

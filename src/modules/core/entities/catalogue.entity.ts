@@ -12,15 +12,15 @@ export class CatalogueEntity {
   })
   deletedAt: Date;
 
-  @Column({ type: 'varchar', name: 'name', nullable:false })
+  @Column({ type: 'varchar', name: 'name', nullable:false, comment:'nombre de catálogo' })
   name: string;
 
-  @Column({ type: 'int', name: 'code', nullable:true})
+  @Column({ type: 'int', name: 'code', nullable:true, comment:'código para identificar'})
   code: number;
 
-  @Column({ type: 'varchar', name: 'description' })
+  @Column({ type: 'varchar', name: 'description', comment:'descripción del catálogo' })
   description: string;
 
-  @Column({ type: 'varchar', name: 'type', nullable:false })
+  @Column({ type: 'varchar', name: 'type', nullable:false, comment:'tipo de catálogo' })
   type: string;
 }
