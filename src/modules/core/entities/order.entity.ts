@@ -15,7 +15,7 @@ import { ShopEntity } from './shop.entity';
 
 @Entity('orders', { schema: 'core' })
 export class OrderEntity {
-  @PrimaryGeneratedColumn('uuid', {comment:'Identificador único de la orden'})
+  @PrimaryGeneratedColumn('uuid',{comment:'Identificador único de la orden'})
   id: string;
 
   @CreateDateColumn({
