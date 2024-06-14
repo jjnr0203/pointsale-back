@@ -15,6 +15,14 @@ export class ShopsController{
             message: 'Tienda encontrada'
         } 
     }
+    @Get(':id/user')
+    async findShopsByUSer(@Param('id') id:string){
+        const data = await this.shopsService.findShopsByUser(id)
+        return {
+            data: data,
+            message: 'Tiendas por usuario'
+        } 
+    }
 
     @Get(':id')
     async findOne(@Param('id') id:string){
