@@ -22,7 +22,8 @@ export class EmployeesController {
     }
 
     @Post()
-    async create(@Body() payload: EmployeDto) {
+    async create(@Body() payload: any) {
+        console.log(payload)
         const serviceResponse = await this.employesService.create(payload);
         return {
             data: serviceResponse,
