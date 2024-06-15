@@ -2,7 +2,6 @@ import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/
 import { CataloguesService } from '../services/catalogues.service';
 import { CatalogueDto } from '../dto/catalogue.dto';
 import { UpdateCatalogueDto } from '../dto/update-catalogue.dto';
-import { query } from 'express';
 
 @Controller('catalogues')
 export class CatalogueController {
@@ -17,6 +16,15 @@ export class CatalogueController {
     }
   }
 
+  @Get('create')
+  async findRoleByName(@Query('name')name:string) {
+    const data = await this.cataloguesService.findRoleByName(name)
+    return {
+      data:data,
+      message:'catalogo para crear un usuario'
+    }
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const data = await this.cataloguesService.findOne(id);
@@ -25,6 +33,8 @@ export class CatalogueController {
       message: 'catalogos encontrados',
     };
   }
+
+  
 
   @Post('')
   async create(@Body() payload:CatalogueDto){

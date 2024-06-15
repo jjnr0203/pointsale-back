@@ -12,6 +12,11 @@ export class EmployeesController {
         return this.employesService.findAll();
     }
 
+    @Get('/:shopId')
+    async findEmployeeByShop(@Param('shopId') shopId: string):Promise<EmployeeEntity[]>{
+        return this.employesService.findEmployeesByShop(shopId);
+    }
+
     @Get(':id')
     async findOne(@Param('id') id: string) {
         const data = this.employesService.findOne(id);
@@ -22,7 +27,8 @@ export class EmployeesController {
     }
 
     @Post()
-    async create(@Body() payload: EmployeDto) {
+    async create(@Body() payload: any) {
+        console.log(payload)
         const serviceResponse = await this.employesService.create(payload);
         return {
             data: serviceResponse,

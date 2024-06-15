@@ -4,6 +4,7 @@ import {UserEntity} from '../entities/user.entity';
 import {UserDto} from '../dto/user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { CatalogueEntity } from 'src/modules/core/entities/catalogue.entity';
 
 
 @Injectable()
@@ -17,6 +18,16 @@ export class UsersService {
         const foundUsers = await this.repository.find();
         return foundUsers
     }
+
+    async findUserByRole(roleId: string): Promise<UserEntity[]> {
+        const users = await this.repository
+          .createQueryBuilder('user')
+          .leftJoinAndSelect('user.role', 'role')
+          .where('user.role_id = :roleId', { roleId })
+          .getMany();
+    
+        return users;
+      }
 
     async findOne(id:string):Promise<UserEntity>{
         const user = await this.repository.findOne({
