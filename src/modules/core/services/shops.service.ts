@@ -4,6 +4,7 @@ import { ShopEntity } from "../entities/shop.entity";
 import { ShopDto } from "../dto/shop.dto";
 import { UpdateShopDto } from "../dto/update-shop.dto";
 import { CoreEnum } from "src/modules/enums/providers.enum";
+import { UserEntity } from "src/modules/auth/entities/user.entity";
 
  @Injectable()
  export class ShopsService{
@@ -37,6 +38,13 @@ import { CoreEnum } from "src/modules/enums/providers.enum";
             throw new NotFoundException('No se encontro la tienda')
         }
         return this.respository.update(id, shopDto);
+    }
+
+    async findShopsByUser(userId:string){
+        const shops = await this.respository.find({
+            where:{user:{id:userId}}
+        })
+        return shops
     }
 
     async remove(id:string){

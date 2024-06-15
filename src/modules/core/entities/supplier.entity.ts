@@ -57,13 +57,8 @@ export class SupplierEntity {
   })
   contactEmail: string;
 
-  @ManyToOne(() => ShipperEntity, { nullable: false })
-  @JoinColumn({
-    name: 'shipper_id',
-    referencedColumnName: 'id',
-    foreignKeyConstraintName: 'suppliers_shipper_id_foreign_key',
-  })
-  shipper: ShipperEntity;
+  @OneToMany(()=>ShipperEntity, shipper => shipper.id)
+  shippers:ShipperEntity[]
 
   @OneToOne(() => UserEntity)
   @JoinColumn({
