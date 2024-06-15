@@ -23,7 +23,7 @@ export class ShopsController{
             message: 'Tiendas por usuario'
         } 
     }
-
+    
     @Get(':id')
     async findOne(@Param('id') id:string){
         const data = await this.shopsService.findOne(id) 

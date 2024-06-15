@@ -85,7 +85,7 @@ export class ShopEntity {
   products: ProductEntity[];
 
   @ManyToMany(() => CustomerEntity, (customer) => customer.shops)
-  customers: CustomerEntity[];
+  customers: CustomerEntity[]
 
   @ManyToOne(() => UserEntity, { nullable: false })
   @JoinColumn({

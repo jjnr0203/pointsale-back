@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Not, Repository } from 'typeorm';
 import { OrderEntity } from '../entities/order.entity';
 import { OrderDto } from '../dto/order.dto';
@@ -41,7 +41,7 @@ export class OrdersService {
       return newOrder;
     } catch (error) {
       console.error(error);
-      throw new Error('Error al realizar la venta');
+      throw new HttpException('Error al realizar la venta', HttpStatus.BAD_REQUEST);
     }
   }
   
