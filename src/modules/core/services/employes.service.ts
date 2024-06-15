@@ -18,6 +18,16 @@ export class EmployesService {
     return await this.repository.find();
   }
 
+  async findEmployeesByShop(shopId: string): Promise<EmployeeEntity[]> {
+    const employees = await this.repository
+      .createQueryBuilder('employee')
+      .leftJoinAndSelect('employee.user', 'user') 
+      .where('employee.shop_id = :shopId', { shopId })
+      .getMany();
+  
+    return employees;
+  }
+
   async findOne(id: string)  {
     const employe = await this.repository.findOne({
       where: { id },

@@ -12,6 +12,11 @@ export class EmployeesController {
         return this.employesService.findAll();
     }
 
+    @Get('/:shopId')
+    async findEmployeeByShop(@Param('shopId') shopId: string):Promise<EmployeeEntity[]>{
+        return this.employesService.findEmployeesByShop(shopId);
+    }
+
     @Get(':id')
     async findOne(@Param('id') id: string) {
         const data = this.employesService.findOne(id);
