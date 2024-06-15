@@ -24,5 +24,5 @@ export class CustomerDto{
     email: string;
 
     @IsNotEmpty()
-    shopIds:string[];
+    shops:ShopEntity[];
 }

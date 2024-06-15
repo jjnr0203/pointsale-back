@@ -41,6 +41,7 @@ export class UsersService {
     async findUserByEmail(email:string){
         const user = await this.repository.findOne({
             where: {email},
+            relations:{role:true}
         })
         if(!user){throw new NotFoundException('Usuario no encontrado');}
         return user

@@ -49,15 +49,7 @@ export class CustomersService {
   }
 
   async create(customerDto: CustomerDto) {
-    const shops= await this.shopRepository.find({
-      where:{id: In(customerDto.shopIds)}
-    })
-
-    const {shopIds, ...customer} = customerDto
-    const newCustomer = this.repository.create({
-      ...customer,
-      shops
-    });
+    const newCustomer = this.repository.create(customerDto)
     return await this.repository.save(newCustomer)
   }
 
