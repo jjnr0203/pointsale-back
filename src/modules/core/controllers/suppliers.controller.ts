@@ -35,7 +35,7 @@ export class SuppliersController{
         }
     }
 
-    @Post('')
+    @Post()
     async create(@Body() supplierDto:SupplierDto){
         const serviceResponse = await this.suppliersService.create(supplierDto)
         return{

@@ -6,7 +6,7 @@ import { ShipperEntity } from "../entities/shipper.entity";
 export class SupplierDto{
     @IsString()
     @IsNotEmpty()
-    name:string;
+    supplierName:string;
 
     @IsString()
     @IsNotEmpty()
@@ -15,7 +15,7 @@ export class SupplierDto{
     @IsString()
     @IsNotEmpty()
     @IsEmail()
-    email: string;
+    contactEmail: string;
 
     @IsNotEmpty()
     shipper: ShipperEntity;

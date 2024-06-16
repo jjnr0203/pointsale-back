@@ -6,8 +6,11 @@ import {
   JoinColumn,
   CreateDateColumn,
   DeleteDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { CatalogueEntity } from './catalogue.entity';
+import { ShopEntity } from './shop.entity';
 
 @Entity('products', {
   schema: 'core',
@@ -63,4 +66,12 @@ export class ProductEntity {
   @ManyToOne(() => CatalogueEntity, { nullable: true })
   @JoinColumn({ name: 'catalogue_id', referencedColumnName: 'id', foreignKeyConstraintName:'product_catalogue_id_foreign_key'})
   catalogueId: string;
+
+  @ManyToMany(() => ShopEntity, (shop) => shop.products)
+  @JoinTable({
+      name:'product_shop',
+      joinColumn:{name:'product_id'},
+      inverseJoinColumn:{name:'shop_id'}
+    })
+    shops: ShopEntity[]
 }

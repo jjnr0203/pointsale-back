@@ -7,6 +7,15 @@ import { ProductDto } from '../dto/product.dto';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
+  @Get(':id/shop')
+  async findByShop(@Param('id') id:string) {
+    const data = await this.productsService.findByShop(id);
+    return {
+      data: data,
+      message: 'Producto por tienda'
+    }
+  }
+
   @Get()
   async findAll() {
     const data = await this.productsService.findAll();
@@ -24,6 +33,7 @@ export class ProductsController {
       message: 'Productos encontrados'
     };
   }
+
 
   @Put(':id')
     async update(@Param('id') id:string, @Body() payload:UpdateProductDto){
