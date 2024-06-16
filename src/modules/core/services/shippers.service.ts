@@ -1,10 +1,9 @@
-import { HttpException, HttpStatus, Inject, Injectable, NotFoundException } from "@nestjs/common";
+import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { ShipperEntity } from "../entities/shipper.entity";
 import { ShipperDto } from "../dto/shipper.dto";
 import { UpdateShipperDto } from "../dto/update-shipper.dto";
 import { CoreEnum } from "src/modules/enums/providers.enum";
-import { SupplierEntity } from "../entities/supplier.entity";
 
 @Injectable()
 export class ShippersService{
@@ -14,8 +13,9 @@ export class ShippersService{
     ){}
 
     async findAll(){
-        return await this.repository.find()
+        return await this.repository.find();
     }
+    
 
     async findOne(id:string){
         const shipper = await this.repository.findOne({

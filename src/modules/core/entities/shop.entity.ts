@@ -70,19 +70,8 @@ export class ShopEntity {
   })
   email: string;
 
-  @ManyToMany(() => ProductEntity)
-  @JoinTable({
-    name: 'product_shop',
-    joinColumn: {
-      name: 'shop_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'product_id',
-      referencedColumnName: 'id',
-    },
-  })
-  products: ProductEntity[];
+  @ManyToMany(() => ProductEntity, (product) => product.shops)
+  products: ProductEntity[]
 
   @ManyToMany(() => CustomerEntity, (customer) => customer.shops)
   customers: CustomerEntity[]

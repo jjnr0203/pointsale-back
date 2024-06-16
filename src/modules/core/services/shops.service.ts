@@ -17,6 +17,7 @@ export class ShopsService {
     return await this.respository.find();
   }
 
+
   async findOne(id: string) {
     const shop = await this.respository.findOne({
       where: { id },

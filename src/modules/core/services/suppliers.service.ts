@@ -14,7 +14,9 @@ export class SuppliersService{
     ){}
 
     async findAll(){
-        return await this.repository.find()
+        const suppliers = await this.repository.find()
+        console.log(suppliers)
+        return suppliers
     }
 
     async findOne(id:string){

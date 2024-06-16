@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString } from "class-validator";
 export class UpdateSupplierDto{
     @IsNotEmpty()
     @IsString()
-    name:string
+    supplierName:string
     
     @IsNotEmpty()
     @IsString()
@@ -11,5 +11,5 @@ export class UpdateSupplierDto{
 
     @IsNotEmpty()
     @IsString()
-    email:string
+    contactEmail: string;
 }

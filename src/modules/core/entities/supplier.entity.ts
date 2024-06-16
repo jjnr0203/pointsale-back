@@ -41,7 +41,7 @@ export class SupplierEntity {
     type: 'varchar',
     comment: 'Nombre del proveedor',
   })
-  supplierName: string;
+  name: string;
 
   @Column({
     name: 'phone',
@@ -55,7 +55,7 @@ export class SupplierEntity {
     type: 'varchar',
     comment: 'Correo del proveedor',
   })
-  contactEmail: string;
+  email: string;
 
   @OneToMany(()=>ShipperEntity, shipper => shipper.id)
   shippers:ShipperEntity[]
