@@ -3,8 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { ShopEntity } from './shop.entity';
 
 @Entity('customers', {
   schema: 'core',
@@ -63,4 +66,15 @@ export class CustomerEntity {
     comment: 'Dirreción del correo electronico',
   })
   email: string;
+
+  
+
+  @ManyToMany(() => ShopEntity, (shop) => shop.customers)
+    @JoinTable({
+      name:'customer_shop',
+      joinColumn:{name:'customer_id'},
+      inverseJoinColumn:{name:'shop_id'}
+    })
+    shops: ShopEntity[]
 }
+

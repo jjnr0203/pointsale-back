@@ -11,11 +11,12 @@ import { DatabaseModule } from 'src/database/database.module';
 @Module({
   imports:[DatabaseModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: 'p0ln13al#',
       signOptions:{expiresIn:'1h'}
     })
   ],
   providers: [AuthService, UsersService,...userProviders],
-  controllers: [UsersController, AuthController]
+  controllers: [UsersController, AuthController],
+  exports: [UsersService]
 })
 export class AuthModule {}

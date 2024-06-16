@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString } from "class-validator";
+import { ShopEntity } from "../entities/shop.entity";
 
 export class CustomerDto{
     
@@ -21,4 +22,7 @@ export class CustomerDto{
     @IsNotEmpty()
     @IsString()
     email: string;
+
+    @IsNotEmpty()
+    shops:ShopEntity[];
 }

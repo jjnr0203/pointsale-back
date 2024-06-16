@@ -17,9 +17,10 @@ import { EmployesService } from './services/employes.service';
 import { SuppliersController } from './controllers/suppliers.controller';
 import { ShippersController } from './controllers/shippers.controller';
 import { EmployeesController } from './controllers/employees.controller';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-    imports:[DatabaseModule],
+    imports:[DatabaseModule, AuthModule],
     providers: [...coreProviders,
         CustomersService,
         OrdersService,
