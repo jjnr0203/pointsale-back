@@ -9,15 +9,15 @@ import { CoreEnum } from "src/modules/enums/providers.enum";
  export class ProductsService{
     constructor(
         @Inject(CoreEnum.PRODUCT_REPOSITORY)
-        private respository: Repository<ProductEntity>
+        private repository: Repository<ProductEntity>
     ){}
 
     async findAll(){
-        return await this.respository.find();
+        return await this.repository.find();
     }
 
     async findOne(id:string){
-        const product = await this.respository.findOne({
+        const product = await this.repository.findOne({
             where: {id},
         });
         if(!product){
@@ -27,20 +27,20 @@ import { CoreEnum } from "src/modules/enums/providers.enum";
     }
 
     async create(productDto:ProductDto){
-        return this.respository.create(productDto)
+        return this.repository.create(productDto)
     }
 
     async update(id:string, productDto:UpdateProductDto){
-        const product = await this.respository.findBy({id});
+        const product = await this.repository.findBy({id});
         if(!product){
             throw new NotFoundException('No se encontro el producto')
         }
-        return this.respository.update(id, productDto);
+        return this.repository.update(id, productDto);
 
     }
 
     async remove(id:string){
-        const product = await this.respository.findBy({id});
-        return this.respository.softRemove(product);
+        const product = await this.repository.findBy({id});
+        return this.repository.softRemove(product);
 }
 }

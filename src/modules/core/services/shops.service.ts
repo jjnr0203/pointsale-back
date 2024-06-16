@@ -12,7 +12,7 @@ import { CoreEnum } from "src/modules/enums/providers.enum";
         private respository: Repository<ShopEntity>
     ){}
 
-    async findAll(): Promise<ShopEntity[]> {
+    async findAll() {
         return await this.respository.find();
     }
 
