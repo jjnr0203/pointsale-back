@@ -13,13 +13,10 @@ export class ShopsService {
     private respository: Repository<ShopEntity>,
   ) {}
 
-<<<<<<< HEAD
-    async findAll() {
-        return await this.respository.find();
-=======
   async findAll(): Promise<ShopEntity[]> {
     return await this.respository.find();
   }
+
 
   async findOne(id: string) {
     const shop = await this.respository.findOne({
@@ -28,7 +25,6 @@ export class ShopsService {
 
     if (!shop) {
       throw new NotFoundException('Tienda no encontrada');
->>>>>>> 38426f7c0db405e47b554591660d9768848af8b7
     }
     return shop;
   }
