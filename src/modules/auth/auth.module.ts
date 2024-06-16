@@ -16,6 +16,7 @@ import { DatabaseModule } from 'src/database/database.module';
     })
   ],
   providers: [AuthService, UsersService,...userProviders],
-  controllers: [UsersController, AuthController]
+  controllers: [UsersController, AuthController],
+  exports: [UsersService]
 })
 export class AuthModule {}

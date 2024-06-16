@@ -67,17 +67,14 @@ export class CustomerEntity {
   })
   email: string;
 
-  @ManyToMany(() => ShopEntity, {cascade:true})
-  @JoinTable({
-    name: 'customer_shop',
-    joinColumn: {
-      name: 'shop_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'customer_id',
-      referencedColumnName: 'id',
-    },
-  })
-  shops: ShopEntity[];
+  
+
+  @ManyToMany(() => ShopEntity, (shop) => shop.customers)
+    @JoinTable({
+      name:'customer_shop',
+      joinColumn:{name:'customer_id'},
+      inverseJoinColumn:{name:'shop_id'}
+    })
+    shops: ShopEntity[]
 }
+

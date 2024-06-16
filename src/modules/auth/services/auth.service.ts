@@ -17,8 +17,16 @@ export class AuthService {
         }
         const isMatch = await bcrypt.compare(payload.password, userFound.password);
         if (isMatch) {
-            const {password, ...user} = userFound;
-            return this.jwtService.signAsync(user);
+            const payload = { 
+                sub: userFound.id, 
+                username: userFound.name, 
+                email:userFound.email, 
+                role:userFound.role.id 
+            };
+            return {
+                user:payload,
+                token: await this.jwtService.signAsync(payload)
+            }
         } else {
             throw new NotFoundException('Contraseña incorrecta')
         }

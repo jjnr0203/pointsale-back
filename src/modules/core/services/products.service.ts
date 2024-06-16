@@ -14,6 +14,7 @@ import { ShopEntity } from "../entities/shop.entity";
 
         @Inject(CoreEnum.SHOP_REPOSITORY)
         private readonly shopRepository: Repository<ShopEntity>,
+
     ){}
 
 
@@ -25,6 +26,7 @@ import { ShopEntity } from "../entities/shop.entity";
         return await this.repository.find({
             where: {shops: {id:idShop}},
         });
+
     }
 
     async findOne(id:string){

@@ -8,12 +8,13 @@ export class SuppliersController{
     constructor(private suppliersService:SuppliersService){}
 
     @Get()
-    async findAll(){
+    async findSuppliers(){
         const serviceResponse = await this.suppliersService.findAll()
-        return {
+        console.log(serviceResponse)
+        /* return {
             data: serviceResponse,
             message: 'Suppliers'
-        }
+        } */
     }
 
     @Get(':id')

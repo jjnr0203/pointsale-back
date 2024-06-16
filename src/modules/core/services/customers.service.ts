@@ -1,20 +1,24 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CustomerEntity } from '../entities/customer.entity';
 import { CustomerDto} from '../dto/customer.dto';
 import { UpdateCustomerDto } from '../dto/update-customer.dto';
+import { CoreEnum } from 'src/modules/enums/providers.enum';
+import { ShopEntity } from '../entities/shop.entity';
 
 @Injectable()
 export class CustomersService {
   constructor(
     @Inject('CUSTOMER_REPOSITORY')
     private repository: Repository<CustomerEntity>,
+    @Inject(CoreEnum.SHOP_REPOSITORY)
+    private readonly shopRepository: Repository<ShopEntity>,
   ) {}
 
   async findAll() {
     return await this.repository.find();
   }
- 
+
   async findOne(id: string)  {
     const customer = await this.repository.findOne({
       where: { id },
@@ -34,9 +38,19 @@ export class CustomersService {
     return this.repository.update(id, customerDto);
   }
 
+  async findByShop(id:string){
+   /*  const shop= await this.shopRepository.findOne({
+      where:{id:id}
+    }) */
+    const customers= await this.repository.find({
+      where:{shops:{id}}
+    })
+    return customers
+  }
+
   async create(customerDto: CustomerDto) {
-    const newUser = await this.repository.create(customerDto);
-    return await this.repository.save(newUser)
+    const newCustomer = this.repository.create(customerDto)
+    return await this.repository.save(newCustomer)
   }
 
   async remove(id: string) {

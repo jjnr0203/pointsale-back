@@ -2,10 +2,11 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { CustomersService } from '../services/customers.service';
 import { UpdateCustomerDto } from '../dto/update-customer.dto';
 import { CustomerDto } from '../dto/customer.dto';
+import { ShopsService } from '../services/shops.service';
 
 @Controller('customers')
 export class CustomerController {
-  constructor(private customersService: CustomersService) {}
+  constructor(private customersService: CustomersService,private shopsService:ShopsService) {}
 
   @Get()
   async findAll() {
@@ -16,6 +17,15 @@ export class CustomerController {
     }
   }
 
+ /*  @Get(':id/shop')
+  async findCustomersByShop(@Param('id') id:string){
+      const data = await this.shopsService.findCustomersByShop(id)
+      return {
+        message:'Clientes por tienda',
+        data:data
+      }
+  } */
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const data = await this.customersService.findOne(id);
@@ -24,6 +34,15 @@ export class CustomerController {
       message: 'clientes encontrados',
     };
   }
+
+  @Get(':id/shop')
+  async findByShops(@Param('id') id:string){
+    const data = await this.customersService.findByShop(id)
+    return {
+      message:'clientes por tienda',
+      data:data
+    }
+  } 
 
   @Put(':id')
     async update(@Param('id') id:string, @Body() payload:UpdateCustomerDto){

@@ -25,6 +25,17 @@ export class CataloguesService {
     }
     return catalogue;
   }
+  
+  async findRoleByName(name: string) {
+    const catalogue = await this.repository.find({
+      where: { name },
+    });
+    if (!catalogue) {
+      throw new NotFoundException('Catalogo no encontrado');
+    }
+    return catalogue;
+  }
+
   async findByType(type: string) {
     const catalogue = await this.repository.find({
       where: { type },

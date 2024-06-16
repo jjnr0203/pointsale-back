@@ -1,7 +1,9 @@
-import {Body, Controller, Post, Get, Delete, Param, Put, Patch} from '@nestjs/common';
+import {Body, Controller, Post, Get, Delete, Param, Put, Query} from '@nestjs/common';
 import {UsersService} from '../services/users.service';
 import {UserDto} from '../dto/user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { UserEntity } from '../entities/user.entity';
+import { CatalogueEntity } from 'src/modules/core/entities/catalogue.entity';
 
 @Controller('users')
 export class UsersController {
@@ -15,6 +17,11 @@ export class UsersController {
             data: serviceResponse,
             message: 'Usuarios'
         }
+    }
+
+    @Get('/:roleId')
+        async findUsersByRole(@Param('roleId') roleId: string): Promise<UserEntity[]> {
+        return this.usersService.findUserByRole(roleId);
     }
 
     @Get(':id')
@@ -40,7 +47,6 @@ export class UsersController {
         const serviceResponse = await this.usersService.create(payload);
         return {
             data: serviceResponse,
-            message: 'Usuario creado'
         };
     }
 
