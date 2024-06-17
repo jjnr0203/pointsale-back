@@ -17,25 +17,25 @@ export class ShippersController{
         }
     }
 
-    @Get(':id')
-    async findShippersBySupplierId(@Param('id')id:SupplierEntity){
-        const shipper = await this.shippersService.findShippersBySuppierId(id)
-        console.log(shipper);
+    @Get(':id/supplier')
+    async findShippersBySupplierId(@Param('id')id:string){
+        const shippers = await this.shippersService.findShippersBySuppierId(id)
+        console.log(shippers);
         return{
-            data: shipper,
-            message: 'Shipper Encontrado'
+            data: shippers,
+            message: ' Encontrado'
         }
     }
 
-    /* @Get(':id')
+    @Get(':id')
     async findOne(@Param('id')id:string){
         const shipper = await this.shippersService.findOne(id)
         console.log(shipper);
         return{
             data: shipper,
-            message: 'Shipper Encontrado'
+            message: 'Repartidor Encontrado'
         }
-    } */
+    }
 
     /* @Post('')
     async create(@Param() shipperDto:ShipperDto){
@@ -56,7 +56,7 @@ export class ShippersController{
     }
 
     @Post()
-    async create(@Body() payload: any) {
+    async create(@Body() payload: ShipperDto) {
         console.log(payload)
         const serviceResponse = await this.shippersService.create(payload);
         return {

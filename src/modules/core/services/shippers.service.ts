@@ -20,12 +20,12 @@ export class ShippersService{
     }
 
 
-    async findShippersBySuppierId(supplierId: SupplierEntity) {
-        const supplier = await this.repository.find({
-          where: { supplier: supplierId },
-          relations: ['supplier'],
+    async findShippersBySuppierId(supplierId: string) {
+        const shippers = await this.repository.find({
+          where: { supplier:{id:supplierId}}
+          ,relations:{user:true}
         });
-        return supplier
+        return shippers
       }
 
     async findOne(id:string){
@@ -46,12 +46,6 @@ export class ShippersService{
        await this.repository.save(shipperDto)
        return newShipper
     }
-
-   /*  async create(shipper:ShipperDto){
-        const newShipper = this.repository.create(shipper)
-        return await this.repository.save(newShipper)
-    } */
-
     /* async update(id:string, updateShipper:UpdateShipperDto){
         const shipper = await this.repository.findOne({where:{id}});
         if(!shipper){

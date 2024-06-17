@@ -46,7 +46,7 @@ export class UserEntity {
     this.password = await bcrypt.hash(this.password, 10);
   }
 
-  @ManyToOne(() => CatalogueEntity, { nullable: false })
+  @ManyToOne(() => CatalogueEntity, { nullable: false, eager:true })
   @JoinColumn({ name: 'role_id', referencedColumnName: 'id' })
   role: CatalogueEntity;
 }

@@ -5,10 +5,8 @@ import { SupplierEntity } from "../entities/supplier.entity";
 export class ShipperDto{
     
     @IsNotEmpty()
-    @IsString()
     user: UserDto; 
 
     @IsNotEmpty()
-    @IsString()
     supplier: SupplierEntity;
 }
