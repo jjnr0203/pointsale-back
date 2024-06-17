@@ -1,8 +1,14 @@
 import { IsNotEmpty, IsString } from "class-validator";
-import { UserEntity } from "src/modules/auth/entities/user.entity";
+import { UserDto } from "src/modules/auth/dto/user.dto";
+import { SupplierEntity } from "../entities/supplier.entity";
 
 export class ShipperDto{
     
     @IsNotEmpty()
-    user: UserEntity; 
+    @IsString()
+    user: UserDto; 
+
+    @IsNotEmpty()
+    @IsString()
+    supplier: SupplierEntity;
 }
