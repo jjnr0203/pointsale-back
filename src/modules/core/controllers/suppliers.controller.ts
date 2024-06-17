@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common"
 import { SuppliersService } from "../services/suppliers.service";
 import { UpdateSupplierDto } from "../dto/update-supplier.dto";
 import { SupplierDto } from "../dto/supplier.dto";
+import { get } from "http";
 
 @Controller('suppliers')
 export class SuppliersController{
@@ -26,7 +27,7 @@ export class SuppliersController{
             message: 'Supplier Encontrado'
         }
     }
-
+    
     @Put(':id')
     async update(@Param('id') id:string, @Body() supplier:UpdateSupplierDto){
         const updateSupplier = await this.suppliersService.update(id, supplier)

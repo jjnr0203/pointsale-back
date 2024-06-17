@@ -29,6 +29,14 @@ export class SuppliersService{
         return supplier;
     }
 
+    async findSupplierByUser(id:string){
+        const supplier = await this.repository.findOne({
+            where:{user:{id}}
+        })
+        return supplier
+    }
+    
+
     async create(supplier: SupplierDto){
         const newSupplier = this.repository.create(supplier)
         return await this.repository.save(newSupplier)

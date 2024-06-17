@@ -66,7 +66,7 @@ export class SupplierEntity {
     referencedColumnName: 'id',
     foreignKeyConstraintName: 'suppliers_user_id_foreign_key',
   })
-  user: string;
+  user: UserEntity;
 
   @ManyToMany(() => ShopEntity)
   @JoinTable({

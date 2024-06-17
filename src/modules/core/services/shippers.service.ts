@@ -20,9 +20,9 @@ export class ShippersService{
     }
 
 
-    async findShippersBySuppierId(supplierId: string) {
+    async findShippersByUser(userId: string) {
         const shippers = await this.repository.find({
-          where: { supplier:{id:supplierId}}
+          where: { supplier:{user:{id:userId}}}
           ,relations:{user:true}
         });
         return shippers
@@ -46,6 +46,7 @@ export class ShippersService{
        await this.repository.save(shipperDto)
        return newShipper
     }
+
     /* async update(id:string, updateShipper:UpdateShipperDto){
         const shipper = await this.repository.findOne({where:{id}});
         if(!shipper){
