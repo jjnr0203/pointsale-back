@@ -28,15 +28,6 @@ export class SuppliersController{
         }
     }
 
-    @Get(':id/user')
-    async findSupplierByUser(@Param('id') id:string){
-        const supplier = await this.suppliersService.findSupplierByUser(id)
-        console.log(supplier)
-        return {
-            data: supplier,
-            message: 'Supplier Encontrado'
-        }
-    }
     
     @Put(':id')
     async update(@Param('id') id:string, @Body() supplier:UpdateSupplierDto){
@@ -47,7 +38,7 @@ export class SuppliersController{
         }
     }
 
-    @Post()
+    @Post('')
     async create(@Body() supplierDto:SupplierDto){
         const serviceResponse = await this.suppliersService.create(supplierDto)
         return{
