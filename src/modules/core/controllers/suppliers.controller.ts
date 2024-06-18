@@ -35,6 +35,15 @@ export class SuppliersController{
             message: 'Supplier Encontrado'
         }
     }
+    @Get(':id/user')
+    async findByUser(@Param('id') id:string){
+        const supplier = await this.suppliersService.findByUser(id)
+        console.log(supplier)
+        return {
+            data: supplier,
+            message: 'Supplier Encontrado'
+        }
+    }
 
     
     @Put(':id')

@@ -30,6 +30,15 @@ export class SuppliersService{
         };
         return supplier;
     }
+    async findByUser(id:string){
+        const supplier = await this.repository.findOne({
+            where:{user:{id}},
+        });
+        if(!supplier){
+            throw new NotFoundException('Provedor no encontrado')
+        };
+        return supplier;
+    }
     async findByShop(id:string){
         const suppliers = await this.repository.find({
             where:{shops:{id}},
