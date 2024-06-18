@@ -26,6 +26,15 @@ export class EmployeesController {
         }
     }
 
+    @Get(':id/user')
+    async findByUser(@Param('id') id: string) {
+        const data = await this.employesService.findByUser(id);
+        return {
+            data: data,
+            message: 'Empleados encontrados'
+        }
+    }
+
     @Post()
     async create(@Body() payload: any) {
         console.log(payload)

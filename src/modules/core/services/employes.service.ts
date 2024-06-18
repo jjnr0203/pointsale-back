@@ -38,6 +38,13 @@ export class EmployesService {
     }
     return employe;
   }
+  async findByUser(id: string)  {
+    const employe = await this.repository.findOne({
+      where: { user:{id} },
+      relations:{shop:true}
+    });
+    return employe;
+  }
 
     async create(employeDto: EmployeDto) {
       /* try {

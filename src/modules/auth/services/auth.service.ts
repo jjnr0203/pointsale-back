@@ -21,7 +21,7 @@ export class AuthService {
                 sub: userFound.id, 
                 username: userFound.name, 
                 email:userFound.email, 
-                role:userFound.role.id 
+                role:userFound.role 
             };
             return {
                 user:payload,
