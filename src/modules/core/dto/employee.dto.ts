@@ -6,11 +6,9 @@ import { UserDto } from "src/modules/auth/dto/user.dto";
 export class EmployeDto{
     
     @IsNotEmpty()
-    @IsString()
     user: UserDto;
 
     @IsNotEmpty()
-    @IsString()
     shop: ShopEntity;
 
 }

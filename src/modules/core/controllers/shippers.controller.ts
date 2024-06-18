@@ -17,6 +17,16 @@ export class ShippersController{
         }
     }
 
+    @Get(':id/user')
+    async findShipperBySupplierUserId(@Param('id')id:string){
+        const shippers = await this.shippersService.findShippersBySupplierUserId(id)
+        console.log(shippers);
+        return{
+            data: shippers,
+            message: 'Dato Encontrado'
+        }
+    }
+    
     @Get(':id/supplier')
     async findShippersBySupplierId(@Param('id')id:string){
         const shippers = await this.shippersService.findShippersByUser(id)

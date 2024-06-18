@@ -19,6 +19,13 @@ export class ShippersService{
         return await this.repository.find();
     }
 
+    async findShippersBySupplierUserId(userId: string) {
+        const shippers = await this.repository.findOne({
+          where: {user:{id:userId}}
+          ,relations:{supplier:true}
+        });
+        return shippers
+      }
 
     async findShippersByUser(userId: string) {
         const shippers = await this.repository.find({
