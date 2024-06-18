@@ -46,7 +46,7 @@ export class ShopsService {
 
   async findShopsByUser(userId: string) {
     const shops = await this.repository.find({
-      where: { user: { id: userId } },
+      where: { user:{id:userId}} ,
     });
     return shops;
   }

@@ -1,12 +1,18 @@
 import { Injectable } from "@nestjs/common";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 import { ShipperEntity } from "../entities/shipper.entity";
+import { UserDto } from "src/modules/auth/dto/user.dto";
+import { ShopEntity } from "../entities/shop.entity";
 
 @Injectable()
 export class SupplierDto{
+
+    @IsNotEmpty()
+    user:UserDto
+
     @IsString()
     @IsNotEmpty()
-    supplierName:string;
+    name:string;
 
     @IsString()
     @IsNotEmpty()
@@ -15,8 +21,8 @@ export class SupplierDto{
     @IsString()
     @IsNotEmpty()
     @IsEmail()
-    contactEmail: string;
+    email: string;
 
     @IsNotEmpty()
-    shipper: ShipperEntity[];
+    shops:ShopEntity[]
 }

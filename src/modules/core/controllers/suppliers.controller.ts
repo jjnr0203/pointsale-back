@@ -17,6 +17,14 @@ export class SuppliersController{
             message: 'Suppliers'
         } */
     }
+    @Get(':id/shop')
+    async findByShop(@Param('id') id:string){
+        const serviceResponse = await this.suppliersService.findByShop(id)
+         return {
+            data: serviceResponse,
+            message: 'Suppliers'
+        }
+    }
 
     @Get(':id')
     async findOne(@Param('id') id:string){
@@ -45,6 +53,7 @@ export class SuppliersController{
             data: serviceResponse,
             message: 'Supplier Creado'
         }
+       return supplierDto
 
     }
 

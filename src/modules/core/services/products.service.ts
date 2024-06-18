@@ -6,8 +6,8 @@ import { UpdateProductDto } from "../dto/update-product.dto";
 import { CoreEnum } from "src/modules/enums/providers.enum";
 import { ShopEntity } from "../entities/shop.entity";
 
- @Injectable()
- export class ProductsService{
+@Injectable()
+export class ProductsService {
     constructor(
         @Inject(CoreEnum.PRODUCT_REPOSITORY)
         private repository: Repository<ProductEntity>,
@@ -15,54 +15,46 @@ import { ShopEntity } from "../entities/shop.entity";
         @Inject(CoreEnum.SHOP_REPOSITORY)
         private readonly shopRepository: Repository<ShopEntity>,
 
-    ){}
+    ) { }
 
 
-    async findAll(){
+    async findAll() {
         return await this.repository.find();
     }
 
-    async findByShop(idShop: string){
+    async findByShop(idShop: string) {
         return await this.repository.find({
-            where: {shops: {id:idShop}},
+            where: { shops: { id: idShop } },
         });
 
     }
 
-    async findOne(id:string){
+    async findOne(id: string) {
         const product = await this.repository.findOne({
-            where: {id},
+            where: { id },
         });
-        if(!product){
+        if (!product) {
             throw new NotFoundException('Producto no encontrado');
         }
         return product;
     }
 
-    async create(productDto:ProductDto){
-        const shop = await this.shopRepository.find({
-            where: {id:In(productDto.shops)},
-        })
-        console.log(shop)
-        const {shops, ...product} = productDto
-        const newProduct = this.repository.create({
-            ...product, 
-            shops
-        })
+    async create(productDto: ProductDto) {
+        const newProduct = this.repository.create(productDto)
         return await this.repository.save(newProduct)
     }
 
-    async update(id:string, productDto:UpdateProductDto){
-        const product = await this.repository.findBy({id});
-        if(!product){
+    async update(id: string, productDto: UpdateProductDto) {
+        const product = await this.repository.findBy({ id });
+        if (!product) {
             throw new NotFoundException('No se encontro el producto')
         }
         return this.repository.update(id, productDto);
 
     }
 
-    async remove(id:string){
-        const product = await this.repository.findBy({id});
+    async remove(id: string) {
+        const product = await this.repository.findBy({ id });
         return this.repository.softRemove(product);
-}
+    }
 }

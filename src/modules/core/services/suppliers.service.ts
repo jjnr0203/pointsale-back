@@ -6,15 +6,14 @@ import { UpdateSupplierDto } from "../dto/update-supplier.dto";
 import { ShopEntity } from "../entities/shop.entity";
 import { ProductDto } from "../dto/product.dto";
 import { SupplierDto } from "../dto/supplier.dto";
+import { UsersService } from "src/modules/auth/services";
 
 @Injectable()
 export class SuppliersService{
     constructor(
         @Inject(CoreEnum.SUPPLIER_REPOSITORY) 
         private repository:Repository<SupplierEntity>,
-
-        @Inject(CoreEnum.SHOP_REPOSITORY)
-        private readonly shopRepository: Repository<ShopEntity>,
+        private usersService:UsersService
     ){}
 
     async findAll(){
@@ -31,18 +30,22 @@ export class SuppliersService{
         };
         return supplier;
     }
+    async findByShop(id:string){
+        const suppliers = await this.repository.find({
+            where:{shops:{id}},
+        });
+        if(!suppliers){
+            throw new NotFoundException('Provedor no encontrado')
+        };
+        return suppliers;
+    }
 
     async create(supplierDto:SupplierDto){
-        const shops = await this.shopRepository.find({
-            where: {id:In(supplierDto.shipper)},
-        })
-        console.log(shops)
-        const {shipper, ...product} = supplierDto
-        const newProduct = this.repository.create({
-            ...product, 
-            shops
-        })
-        return await this.repository.save(newProduct)
+        const {user, ...rest} = supplierDto
+        const newUser = await this.usersService.create(user)
+        supplierDto.user = newUser;
+        const newSupplier = this.repository.create(supplierDto)
+        return await this.repository.save(newSupplier)
     }
 
     async update(id:string, updateSupplier:UpdateSupplierDto){
