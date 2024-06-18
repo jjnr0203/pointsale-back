@@ -18,5 +18,5 @@ export class SupplierDto{
     contactEmail: string;
 
     @IsNotEmpty()
-    shipper: ShipperEntity;
+    shipper: ShipperEntity[];
 }

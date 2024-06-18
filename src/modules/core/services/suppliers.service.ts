@@ -1,22 +1,25 @@
-import { HttpException, HttpStatus, Inject, Injectable, NotFoundException } from "@nestjs/common";
-import { Repository } from "typeorm";
+import { Inject, Injectable, NotFoundException } from "@nestjs/common";
+import { In, Repository } from "typeorm";
 import { SupplierEntity } from "../entities/supplier.entity";
-import { SupplierDto } from "../dto/supplier.dto";
 import { CoreEnum } from "src/modules/enums/providers.enum";
 import { UpdateSupplierDto } from "../dto/update-supplier.dto";
+import { ShopEntity } from "../entities/shop.entity";
+import { ProductDto } from "../dto/product.dto";
+import { SupplierDto } from "../dto/supplier.dto";
 
 @Injectable()
 export class SuppliersService{
-
     constructor(
         @Inject(CoreEnum.SUPPLIER_REPOSITORY) 
-        private repository:Repository<SupplierEntity>
+        private repository:Repository<SupplierEntity>,
+
+        @Inject(CoreEnum.SHOP_REPOSITORY)
+        private readonly shopRepository: Repository<ShopEntity>,
     ){}
 
     async findAll(){
         const suppliers = await this.repository.find()
         console.log(suppliers)
-        return suppliers
     }
 
     async findOne(id:string){
@@ -29,17 +32,17 @@ export class SuppliersService{
         return supplier;
     }
 
-    async findSupplierByUser(id:string){
-        const supplier = await this.repository.findOne({
-            where:{user:{id}}
+    async create(supplierDto:SupplierDto){
+        const shops = await this.shopRepository.find({
+            where: {id:In(supplierDto.shipper)},
         })
-        return supplier
-    }
-    
-
-    async create(supplier: SupplierDto){
-        const newSupplier = this.repository.create(supplier)
-        return await this.repository.save(newSupplier)
+        console.log(shops)
+        const {shipper, ...product} = supplierDto
+        const newProduct = this.repository.create({
+            ...product, 
+            shops
+        })
+        return await this.repository.save(newProduct)
     }
 
     async update(id:string, updateSupplier:UpdateSupplierDto){
@@ -51,7 +54,7 @@ export class SuppliersService{
     }
 
     async remove(id:string){
-        const supplier = await this.repository.findOneBy({id})
+        const supplier = await this.repository.findBy({id})
         if(!supplier){
             throw this.repository.softRemove(supplier);
         }
