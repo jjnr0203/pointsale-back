@@ -40,11 +40,11 @@ import { ShopEntity } from "../entities/shop.entity";
     }
 
     async create(productDto:ProductDto){
-        const shops = await this.shopRepository.find({
-            where: {id:In(productDto.shopsId)},
+        const shop = await this.shopRepository.find({
+            where: {id:In(productDto.shops)},
         })
-        console.log(shops)
-        const {shopsId, ...product} = productDto
+        console.log(shop)
+        const {shops, ...product} = productDto
         const newProduct = this.repository.create({
             ...product, 
             shops

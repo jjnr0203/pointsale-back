@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { ShopEntity } from "../entities/shop.entity";
 
 export class ProductDto{
 
@@ -19,5 +20,5 @@ export class ProductDto{
     cost: number;
 
     @IsNotEmpty()
-    shopsId: string[];
+    shops: ShopEntity[];
 }

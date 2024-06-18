@@ -10,16 +10,16 @@ import { UserEntity } from 'src/modules/auth/entities/user.entity';
 export class ShopsService {
   constructor(
     @Inject(CoreEnum.SHOP_REPOSITORY)
-    private respository: Repository<ShopEntity>,
+    private repository: Repository<ShopEntity>,
   ) {}
 
   async findAll(): Promise<ShopEntity[]> {
-    return await this.respository.find();
+    return await this.repository.find();
   }
 
 
   async findOne(id: string) {
-    const shop = await this.respository.findOne({
+    const shop = await this.repository.findOne({
       where: { id },
     });
 
@@ -30,25 +30,28 @@ export class ShopsService {
   }
 
   async create(shopDto: ShopDto) {
-    return this.respository.create(shopDto);
-  }
+      const newShop = this.repository.create(
+        shopDto
+      )
+      return await this.repository.save(newShop)
+  } 
 
   async update(id: string, shopDto: UpdateShopDto) {
-    const shop = await this.respository.findBy({ id });
+    const shop = await this.repository.findBy({ id });
     if (!shop) {
       throw new NotFoundException('No se encontro la tienda');
     }
-    return this.respository.update(id, shopDto);
+    return this.repository.update(id, shopDto);
   }
 
   async findShopsByUser(userId: string) {
-    const shops = await this.respository.find({
+    const shops = await this.repository.find({
       where: { user: { id: userId } },
     });
     return shops;
   }
   async findCustomersByShop(id: string) {
-    const customers = await this.respository.findOne({
+    const customers = await this.repository.findOne({
       where: { id },
       relations: { customers: true },
     });
@@ -56,7 +59,7 @@ export class ShopsService {
   }
 
   async remove(id: string) {
-    const shop = await this.respository.findBy({ id });
-    return this.respository.softRemove(shop);
+    const shop = await this.repository.findBy({ id });
+    return this.repository.softRemove(shop);
   }
 }
